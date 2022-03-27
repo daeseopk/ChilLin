@@ -7,13 +7,12 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import "../Styles/Search.css";
 import Recommend from "../components/Recommend";
+import GridTemplate from "../components/GridTemplate";
 
 function Search() {
    const [loading, setLoading] = useState(true);
    const [movies, setMovies] = useState([]);
    const key = window.localStorage.getItem("key");
-   const [recommend, setRecommend] = useState({});
-   const IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
    const getMoives = async () => {
       const response = await axios.get(
@@ -26,7 +25,6 @@ function Search() {
       getMoives();
    }, []);
 
-   // console.log(movies);
    return (
       <div className="container">
          {loading ? (
@@ -52,9 +50,8 @@ function Search() {
                      }>
                      <SearchBar width="500px" value={key} />
                   </div>
-                  {/* TODO : 검색결과 존재, 미존재 시 뿌릴 컴포넌트 제작해야됌 */}
                   {movies.length ? (
-                     <div></div>
+                     <GridTemplate movies={movies} />
                   ) : (
                      <div className="movieNoneExistBody">
                         <h1 className="sorryText">

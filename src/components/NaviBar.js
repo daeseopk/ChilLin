@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import Button from "@mui/material/Button";
 import "../Styles/NaviBar.css";
-import SearchBar from "./SearchBar";
 
 function NaviBar() {
    return (
