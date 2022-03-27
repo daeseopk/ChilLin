@@ -5,6 +5,10 @@ import Button from "@mui/material/Button";
 import "../Styles/NaviBar.css";
 
 function NaviBar() {
+   const onClick = () => {
+      window.sessionStorage.setItem("Login", false);
+      window.location.replace("/Home");
+   };
    return (
       <div className="navbar">
          {/* TODO : 메뉴바 */}
@@ -26,6 +30,11 @@ function NaviBar() {
                />
             </Link>
          </div>
+         <p
+            style={{
+               width: "100%",
+               color: "White",
+            }}>{`Login Status : ${window.sessionStorage.getItem("Login")}`}</p>
          <div className="ItemContainer">
             <div
                style={{
@@ -37,6 +46,11 @@ function NaviBar() {
                   Sign In
                </Button>
             </Link>
+            <button
+               onClick={onClick}
+               style={{ position: "absolute", right: "150px", top: "20px" }}>
+               logout
+            </button>
          </div>
       </div>
    );

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "../Styles/SignIn.module.css";
+import useStore from "../Store.js";
 
 function SignIn() {
    const [user, setUser] = useState({});
    const [warnMsg, setWarnMsg] = useState([]);
    const { register, handleSubmit } = useForm();
+   const state = useStore();
 
    useEffect(() => {
       const fetchUserInfo = async () => {
@@ -37,9 +39,7 @@ function SignIn() {
                   user[i].passWord === d.password
                ) {
                   setWarnMsg("");
-                  // axios.post("http://localhost:3000/Login", {
-                  //     Login: true,
-                  // });
+                  window.sessionStorage.setItem("Login", true);
                   alert(`Welcome ${user[i].userName}!`);
                   window.location.replace("/Home");
                   break;

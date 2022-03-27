@@ -6,8 +6,6 @@ import axios from "axios";
 
 function Home() {
    const [loading, setLoading] = useState(true);
-   const [movies, setMovies] = useState([]);
-   const API_KEY = "api_key=83f61a3baf6174f8aeb8a593cc236386"; // TMDB Api_key
 
    const getMoives = async () => {
       const response = await axios.get(
@@ -18,7 +16,7 @@ function Home() {
    useEffect(() => {
       getMoives();
    }, []);
-
+   console.log(window.sessionStorage.getItem("Login"));
    return (
       <div className={styles.container}>
          {loading ? (

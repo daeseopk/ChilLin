@@ -20,7 +20,7 @@ function SearchBar({ width, value }) {
    });
    const { handleSubmit, control } = useForm();
    function onSubmit(d) {
-      window.localStorage.setItem("key", d.input);
+      window.sessionStorage.setItem("key", d.input);
       window.location.href = "/Search";
    }
    return (

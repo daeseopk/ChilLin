@@ -12,7 +12,7 @@ import GridTemplate from "../components/GridTemplate";
 function Search() {
    const [loading, setLoading] = useState(true);
    const [movies, setMovies] = useState([]);
-   const key = window.localStorage.getItem("key");
+   const key = window.sessionStorage.getItem("key");
 
    const getMoives = async () => {
       const response = await axios.get(
