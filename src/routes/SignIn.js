@@ -41,7 +41,7 @@ function SignIn() {
                   //     Login: true,
                   // });
                   alert(`Welcome ${user[i].userName}!`);
-                  window.location.replace("/movieWeb");
+                  window.location.replace("/Home");
                   break;
                } else setWarnMsg(WarnAccount);
             }
@@ -51,7 +51,7 @@ function SignIn() {
    return (
       <div className={styles.SignInContainer}>
          <div className={styles.Logo}>
-            <Link to="/movieWeb">
+            <Link to="/Home">
                <div className={styles.Logo}>
                   <img
                      style={{

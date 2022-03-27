@@ -19,7 +19,7 @@ function NaviBar() {
                marginLeft: "3%",
                height: "90%",
             }}>
-            <Link to="/movieWeb">
+            <Link to="/Home">
                <img
                   className="Logo"
                   src={require("../Images/Logo.png")}

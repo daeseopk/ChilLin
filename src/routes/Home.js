@@ -35,7 +35,6 @@ function Home() {
                   }}>
                   <NaviBar />
                </div>
-               <div style={{ color: "White" }}>test</div>
                <div className="searchBarContainer">
                   <SearchBar width="500px" />
                </div>

@@ -62,7 +62,7 @@ function SignUp() {
                            }
                         );
                         alert("회원가입이 완료되었습니다.");
-                        window.location.replace("/movieWeb");
+                        window.location.replace("/Home");
                      }
                   }
                } else alert("비밀번호가 일치하는지 확인해 주세요.");
@@ -113,7 +113,7 @@ function SignUp() {
                height: "600px",
                transform: "translate(20%,25%)",
             }}>
-            <Link to="/movieWeb">
+            <Link to="/Home">
                <div className={styles.Logo}>
                   <img
                      style={{
