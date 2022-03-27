@@ -1,0 +1,61 @@
+.container {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   display: block;
+   justify-content: center;
+   background-color: #161616;
+}
+.bodyContainer {
+   text-align: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+}
+.searchBarContainerNoExist {
+   position: relative;
+   display: block;
+   width: 40%;
+   height: 15%;
+   z-index: 1;
+   margin-top: 80px;
+}
+.searchBarContainer {
+   position: relative;
+   display: block;
+   text-align: center;
+   width: 100%;
+   height: 15%;
+   z-index: 1;
+}
+.bodyWrapper {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   height: 92%;
+}
+.movieNoneExistBody {
+   position: absolute;
+   top: 10%;
+   width: 67%;
+   height: 80%;
+}
+.sorryText {
+   margin-top: 120px;
+   font-family: NotoSansOriya;
+   font-size: 30px;
+   font-weight: normal;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -0.9px;
+   text-align: center;
+   color: #fff;
+}
+.recommends {
+   position: relative;
+   display: flexbox;
+   width: 100%;
+   height: 100%;
+}

@@ -1,0 +1,145 @@
+.container {
+   height: 100vh;
+   width: 100%;
+   display: block;
+   justify-content: center;
+   background-color: #161616;
+}
+.bodyContainer {
+   width: 100%;
+   height: 100%;
+}
+.sliderContainer {
+   margin-top: 40px;
+}
+.movieCard {
+   background-color: #161616;
+}
+h3 {
+   background: #5f9ea0;
+   color: #fff;
+   font-size: 36px;
+   line-height: 100px;
+   margin: 10px;
+   padding: 2%;
+   position: relative;
+   text-align: center;
+}
+.slick-next:before,
+.slick-prev:before {
+   color: #000;
+}
+
+.loader {
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-weight: 300;
+}
+
+.movies {
+   display: grid;
+   position: relative;
+   margin: auto;
+   grid-template-columns: repeat(2, minmax(400px, 1fr));
+   grid-gap: 100px;
+   padding: 50px;
+   width: 80%;
+   padding-top: 70px;
+}
+@media screen and (max-width: 1090px) {
+   .movies {
+      grid-template-columns: 1fr;
+      width: 100%;
+   }
+}
+
+.nightModeBtn {
+   position: fixed;
+   width: 70px;
+   right: 20px;
+   top: 80px;
+   background-color: white;
+   border: 0;
+   border-radius: 0.5rem;
+   box-sizing: border-box;
+   color: #111827;
+   font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+   font-size: 15px;
+   font-weight: 600;
+   line-height: 1.25rem;
+   padding: 10px;
+   text-align: center;
+   text-decoration: none #d1d5db solid;
+   text-decoration-thickness: auto;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+   cursor: pointer;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+}
+
+.nightModeBtn:hover {
+   background-color: rgb(249, 250, 251);
+}
+
+.nightModeBtn:focus {
+   outline: 2px solid transparent;
+   outline-offset: 2px;
+}
+
+.nightModeBtn:focus-visible {
+   box-shadow: none;
+}
+
+/* TODO : seperate nightmode css */
+.nightModeBtn_night {
+   position: fixed;
+   width: 70px;
+   right: 50px;
+   top: 10px;
+   background-color: black;
+   border: 0;
+   border-radius: 0.5rem;
+   box-sizing: border-box;
+   color: white;
+   font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+   font-size: 15px;
+   font-weight: 600;
+   line-height: 1.25rem;
+   padding: 10px;
+   text-align: center;
+   text-decoration: none black solid;
+   text-decoration-thickness: auto;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+   cursor: pointer;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+}
+
+.nightModeBtn_night:hover {
+   background-color: #504a4a;
+}
+
+.nightModeBtn_night:focus {
+   outline: 2px solid transparent;
+   outline-offset: 2px;
+}
+
+.nightModeBtn_night:focus-visible {
+   box-shadow: none;
+}
+
+.bodycontainer {
+   display: block;
+   position: relative;
+}

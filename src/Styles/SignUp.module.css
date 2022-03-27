@@ -1,0 +1,94 @@
+.signUpContainer {
+   height: 100%;
+   position: absolute;
+   display: block;
+   width: 100%;
+   justify-content: center;
+   background-position: center;
+   background-color: #161616;
+}
+.backGroundImg {
+   position: relative;
+   left: 30%;
+   width: 70%;
+   height: 100%;
+   background-image: linear-gradient(
+         to left,
+         rgba(22, 22, 22, 0.25),
+         rgba(22, 22, 22, 0.5),
+         rgba(22, 22, 22, 1)
+      ),
+      url("../Images/BackGroundImg.jpeg");
+   background-size: cover;
+}
+.Logo {
+   margin-left: 7%;
+}
+.input1 {
+   text-align: center;
+}
+.input2 {
+   text-align: center;
+   grid-column: 1/3;
+}
+.btn {
+   grid-column: 1/3;
+   text-align: center;
+}
+.firstName,
+.lastName {
+   width: 80%;
+   height: 100%;
+   margin-top: 20px;
+}
+.firstName {
+   margin-left: 10%;
+   border: #707070 solid 1px;
+   border-radius: 12px;
+}
+.lastName {
+   margin-right: 10%;
+   border: #707070 solid 1px;
+   border-radius: 12px;
+}
+.email,
+.password,
+.verifyPasswordDefault,
+.signUp,
+.verifyPasswordChecked {
+   width: 85%;
+   margin-top: 20px;
+   height: 100%;
+   border: #707070 solid 1px;
+   border-radius: 12px;
+}
+.verifyPasswordDefault {
+   border: red solid 2px;
+}
+.verifyPasswordChecked {
+   border: blue solid 1.5px;
+}
+.signUp {
+   height: 100%;
+   background-color: #668ffd;
+   color: white;
+   border-radius: 12px;
+   border: none;
+}
+.signUp:hover {
+   cursor: pointer;
+}
+.account,
+.Terms {
+   width: 500px;
+   position: relative;
+   color: white;
+}
+.account a,
+.Terms a {
+   text-decoration: none;
+   color: blue;
+}
+.Terms {
+   font-size: 12px;
+}
