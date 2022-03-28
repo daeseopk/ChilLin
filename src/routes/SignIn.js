@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "../Styles/SignIn.module.css";
 import useStore from "../Store.js";
+import { FcGoogle } from "react-icons/fc";
+import firebase from "../firebase";
 
 function SignIn() {
    const [user, setUser] = useState({});
@@ -26,7 +28,10 @@ function SignIn() {
       };
       fetchUserInfo();
    }, []);
-
+   const onClick = () => {
+      // firebase.signInWithGoogle();
+      console.log("TODO : google login");
+   };
    const WarnPwd = ["Please enter your ", "password"];
    const WarnEmail = ["Please enter your ", "e-mail"];
    const WarnAccount = ["You have entered the wrong ", "e-mail or password"];
@@ -126,7 +131,14 @@ function SignIn() {
                         Need help?
                      </span>
                   </div>
-                  <div className={styles.google}>
+                  <div onClick={onClick} className={styles.google}>
+                     <FcGoogle
+                        style={{
+                           width: "14px",
+                           height: "14px",
+                           marginRight: "4px",
+                        }}
+                     />
                      <span> Login with Google</span>
                   </div>
                   <span className={styles.SignUp}>
