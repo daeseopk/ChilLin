@@ -100,6 +100,9 @@
       top: 10%;
       width: 75%;
    }
+   .container {
+      height: 1200px;
+   }
 }
 @media screen and (max-width: 1050px) {
    .movieExistBody {
@@ -112,5 +115,8 @@
       color: white;
       top: 10%;
       width: 75%;
+   }
+   .container {
+      height: 1500px;
    }
 }

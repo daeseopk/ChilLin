@@ -1,57 +1,48 @@
 import React from "react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "../Styles/SignIn.module.css";
-import useStore from "../Store.js";
 import { FcGoogle } from "react-icons/fc";
-import firebase from "../firebase";
+import { auth, firebaseInstance } from "../firebase";
 
 function SignIn() {
-   const [user, setUser] = useState({});
    const [warnMsg, setWarnMsg] = useState([]);
    const { register, handleSubmit } = useForm();
-   const state = useStore();
 
-   useEffect(() => {
-      const fetchUserInfo = async () => {
-         try {
-            const result = await axios.get(
-               "https://movieweb-2b841-default-rtdb.firebaseio.com/userInfo.json"
-            );
-            setUser(result.data);
-         } catch (error) {
-            alert(error);
-            console.log(error);
-         }
-      };
-      fetchUserInfo();
-   }, []);
-   const onClick = () => {
-      // firebase.signInWithGoogle();
-      console.log("TODO : google login");
+   const onGoggleClick = async () => {
+      let provider = new firebaseInstance.auth.GoogleAuthProvider();
+      const data = await auth.signInWithPopup(provider);
+      console.log(data.additionalUserInfo);
    };
-   const WarnPwd = ["Please enter your ", "password"];
-   const WarnEmail = ["Please enter your ", "e-mail"];
-   const WarnAccount = ["You have entered the wrong ", "e-mail or password"];
-   const onSubmit = (d) => {
+
+   const onClick = () => {
+      onGoggleClick();
+   };
+
+   const onSubmit = async (d) => {
       if (d.email) {
          if (d.password) {
-            for (let i = 0; i < user.length; i++) {
+            try {
                if (
-                  user[i].email === d.email &&
-                  user[i].passWord === d.password
+                  (await (
+                     await auth.signInWithEmailAndPassword(d.email, d.password)
+                  ).operationType) === "signIn"
                ) {
                   setWarnMsg("");
                   window.sessionStorage.setItem("Login", true);
-                  alert(`Welcome ${user[i].userName}!`);
                   window.location.replace("/Home");
-                  break;
-               } else setWarnMsg(WarnAccount);
+               }
+            } catch (error) {
+               if (error.code === "auth/wrong-password") {
+                  setWarnMsg(["Please enter ", "correct password"]);
+               }
+               if (error.code === "auth/invalid-email") {
+                  setWarnMsg(["Please enter ", "correct email"]);
+               }
             }
-         } else setWarnMsg(WarnPwd);
-      } else setWarnMsg(WarnEmail);
+         } else setWarnMsg(["Please enter your ", "password"]);
+      } else setWarnMsg(["Please enter your ", "e-mail"]);
    };
    return (
       <div className={styles.SignInContainer}>

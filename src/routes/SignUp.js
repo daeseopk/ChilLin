@@ -1,47 +1,23 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import NaviBar from "../components/NaviBar.js";
 import styles from "../Styles/SignUp.module.css";
+import { auth } from "../firebase";
 
 function SignUp() {
-   const [email, setEmail] = useState(""); // 사용자가 입력한 이메일
-   const [existEmail, setExistEmail] = useState([]); // 존재하는 이메일
-   const [userInfo, setUserInfo] = useState({});
-   const [existEmailChecked, setExistEmailChecked] = useState(false);
    const [passWord, setPassWord] = useState("");
    const [verify, setVerify] = useState("");
    const [verifyChecked, setVerifyChecked] = useState(false);
    const { register, handleSubmit } = useForm();
 
-   useEffect(() => {
-      const userList = [];
-      const fetchUserInfo = async () => {
-         try {
-            const result = await axios.get(
-               "https://movieweb-2b841-default-rtdb.firebaseio.com/userInfo.json"
-            );
-            setUserInfo(result.data);
-            result.data.map((user) => {
-               userList.push(user.email);
-            });
-            setExistEmail(userList);
-         } catch (error) {
-            alert(error);
-            console.log(error);
-         }
-      };
-      fetchUserInfo();
-   }, []);
-   const id = userInfo.length;
    const isEmail = (email) => {
       const emailRegex =
+         // eslint-disable-next-line no-useless-escape
          /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
       return emailRegex.test(email);
    };
-   const onSubmit = (d) => {
+   const onSubmit = async (d) => {
       var userName = d.firstName + d.lastName;
       var email = d.email;
       var passWord = d.password;
@@ -50,19 +26,17 @@ function SignUp() {
             if (passWord) {
                if (verifyChecked) {
                   if (pwdCheck(passWord)) {
-                     if (existEmail.includes(email)) {
-                        alert("이미 존재하는 이메일입니다.");
-                     } else {
-                        axios.put(
-                           `https://movieweb-2b841-default-rtdb.firebaseio.com/userInfo/${id}.json`,
-                           {
-                              email: email,
-                              passWord: passWord,
-                              userName: userName,
-                           }
+                     try {
+                        await auth.createUserWithEmailAndPassword(
+                           email,
+                           passWord
                         );
                         alert("회원가입이 완료되었습니다.");
                         window.location.replace("/Home");
+                     } catch (error) {
+                        if (error.code === "auth/email-already-in-use") {
+                           alert("이미 존재하는 이메일 입니다.");
+                        } else alert(error);
                      }
                   }
                } else alert("비밀번호가 일치하는지 확인해 주세요.");
@@ -98,9 +72,6 @@ function SignUp() {
          if (passWord === e.target.value) {
             setVerifyChecked(true);
          } else setVerifyChecked(false);
-      }
-      if (e.target.name === "email") {
-         setEmail(e.target.value);
       }
    };
    return (
