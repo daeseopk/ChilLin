@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,8 @@ import { auth, firebaseInstance } from "../firebase";
 
 function SignIn() {
    const [warnMsg, setWarnMsg] = useState([]);
+   const [isChecked, setIsChecked] = useState(false);
+   const [emailvalue, setEmailValue] = useState("");
    const { register, handleSubmit } = useForm();
 
    const onGoggleClick = async () => {
@@ -15,11 +17,24 @@ function SignIn() {
       const data = await auth.signInWithPopup(provider);
       console.log(data.additionalUserInfo);
    };
+   useEffect(() => {
+      if (window.localStorage.getItem("rememberId")) {
+         setEmailValue(window.localStorage.getItem("rememberId"));
+         setIsChecked(true);
+      }
+   }, []);
 
-   const onClick = () => {
-      onGoggleClick();
+   const onChange = (e) => {
+      if (e.target.checked) {
+         setIsChecked(true);
+      } else {
+         setIsChecked(false);
+      }
    };
-
+   const onChange1 = (e) => {
+      setEmailValue(e.target.value);
+   };
+   // TODO : warning message 글씨 크기 키우기 전체적으로 폰트 조정
    const onSubmit = async (d) => {
       if (d.email) {
          if (d.password) {
@@ -31,6 +46,11 @@ function SignIn() {
                ) {
                   setWarnMsg("");
                   window.sessionStorage.setItem("Login", true);
+                  if (isChecked) {
+                     window.localStorage.setItem("rememberId", d.email);
+                  } else {
+                     window.localStorage.setItem("rememberId", "");
+                  }
                   window.location.replace("/Home");
                }
             } catch (error) {
@@ -69,8 +89,10 @@ function SignIn() {
                <form onSubmit={handleSubmit(onSubmit)}>
                   <input
                      {...register("email")}
+                     onChange={onChange1}
                      className={styles.input}
                      type="text"
+                     value={emailvalue}
                      placeholder="Email"
                   />
                   <br />
@@ -92,6 +114,8 @@ function SignIn() {
                         width: "100%",
                      }}>
                      <input
+                        onChange={onChange}
+                        checked={isChecked}
                         className={styles.Checkbox}
                         id="cb1"
                         type="checkbox"
@@ -122,7 +146,7 @@ function SignIn() {
                         Need help?
                      </span>
                   </div>
-                  <div onClick={onClick} className={styles.google}>
+                  <div onClick={onGoggleClick} className={styles.google}>
                      <FcGoogle
                         style={{
                            width: "14px",

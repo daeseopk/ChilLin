@@ -2,12 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import Button from "@mui/material/Button";
+import { auth } from "../firebase";
 import "../Styles/NaviBar.css";
 
 function NaviBar() {
+   const logout = async () => {
+      await auth.signOut();
+   };
    const onClick = () => {
       window.sessionStorage.setItem("Login", false);
       window.location.replace("/Home");
+      logout();
    };
    return (
       <div className="navbar">

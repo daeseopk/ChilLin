@@ -1,0 +1,16 @@
+.dots_selected {
+   margin-left: 10px;
+   margin-right: 10px;
+   color: #fff;
+   cursor: pointer;
+}
+.dots_unselected {
+   margin-left: 10px;
+   margin-right: 10px;
+   color: #2c2c30;
+   transition: all ease 0.3s;
+   cursor: pointer;
+}
+.dots_unselected:hover {
+   color: #b4b2b2;
+}
