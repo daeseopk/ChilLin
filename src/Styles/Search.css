@@ -1,7 +1,7 @@
 .container {
    position: absolute;
    width: 100%;
-   height: 1000px;
+   height: 100%;
    display: block;
    justify-content: center;
    background-color: #161616;
@@ -64,7 +64,7 @@
 }
 .dotsWrapper {
    position: absolute;
-   margin-top: 750px;
+   bottom: 3%;
    left: 50%;
    transform: translateX(-50%);
 }

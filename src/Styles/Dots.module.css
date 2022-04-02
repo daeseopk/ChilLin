@@ -1,7 +1,7 @@
 .dots_selected {
    margin-left: 10px;
    margin-right: 10px;
-   color: #fff;
+   color: #b4b2b2;
    cursor: pointer;
 }
 .dots_unselected {
@@ -12,5 +12,5 @@
    cursor: pointer;
 }
 .dots_unselected:hover {
-   color: #b4b2b2;
+   color: #fff;
 }

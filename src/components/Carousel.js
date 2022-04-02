@@ -41,7 +41,7 @@ export default function carousel({ recommend, IMAGE_URL }) {
       slidesToShow: 5,
       slidesToScroll: 5,
       autoplay: true,
-      autoplaySpeed: 5500,
+      autoplaySpeed: 4000,
    };
    return (
       <div>
@@ -71,14 +71,6 @@ export default function carousel({ recommend, IMAGE_URL }) {
                   </Link>
                </div>
             ))}
-
-            {/* {movies.map((movie) => (
-               <div key={movie.id}>
-                  <a href={movie.url} target="_blank" rel="noreferrer">
-                     <Image src={movie.medium_cover_image} />
-                  </a>
-               </div>
-            ))} */}
          </StyledSlider>
       </div>
    );

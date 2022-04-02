@@ -4,8 +4,11 @@ import * as FaIcons from "react-icons/fa";
 import Button from "@mui/material/Button";
 import { auth } from "../firebase";
 import "../Styles/NaviBar.css";
+import SideMenu from "./SideMenu.js";
+import { useState } from "react";
 
 function NaviBar() {
+   const [menuVisible, setMenuVisible] = useState(false);
    const logout = async () => {
       await auth.signOut();
    };
@@ -14,13 +17,14 @@ function NaviBar() {
       window.location.replace("/Home");
       logout();
    };
+   const onMenuClick = () => {
+      setMenuVisible(!menuVisible);
+   };
    return (
       <div className="navbar">
-         {/* TODO : 메뉴바 */}
-         <div>
-            <Link to="/">
-               <FaIcons.FaBars className="menuicon" />
-            </Link>
+         <SideMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
+         <div onClick={onMenuClick}>
+            <FaIcons.FaBars className="menuicon" />
          </div>
          <div
             style={{

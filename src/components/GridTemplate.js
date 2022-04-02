@@ -24,7 +24,9 @@ function GridTemplate({ movies }) {
                           posterPath = IMAGE_URL + movie.poster_path;
                        } else posterPath = NoExistImg;
                        return (
-                          <Link to={`/Detail/:${movie.id}`}>
+                          <Link
+                             style={{ display: "contents" }}
+                             to={`/Detail/:${movie.id}`}>
                              <div
                                 key={index}
                                 className="movies"
