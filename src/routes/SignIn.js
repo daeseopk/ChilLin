@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import styles from "../Styles/SignIn.module.css";
 import { FcGoogle } from "react-icons/fc";
 import { auth, firebaseInstance } from "../firebase";
+import firebase from "../firebase";
 
 function SignIn() {
    const [warnMsg, setWarnMsg] = useState([]);
@@ -15,7 +16,9 @@ function SignIn() {
    const onGoggleClick = async () => {
       let provider = new firebaseInstance.auth.GoogleAuthProvider();
       const data = await auth.signInWithPopup(provider);
-      console.log(data.additionalUserInfo);
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      window.location.replace("/Home");
+      if (data.additionalUserInfo) window.sessionStorage.setItem("Login", true);
    };
    useEffect(() => {
       if (window.localStorage.getItem("rememberId")) {
@@ -34,6 +37,7 @@ function SignIn() {
    const onChange1 = (e) => {
       setEmailValue(e.target.value);
    };
+
    // TODO : warning message 글씨 크기 키우기 전체적으로 폰트 조정
    const onSubmit = async (d) => {
       if (d.email) {
@@ -45,6 +49,9 @@ function SignIn() {
                   ).operationType) === "signIn"
                ) {
                   setWarnMsg("");
+                  firebase
+                     .auth()
+                     .setPersistence(firebase.auth.Auth.Persistence.SESSION);
                   window.sessionStorage.setItem("Login", true);
                   if (isChecked) {
                      window.localStorage.setItem("rememberId", d.email);

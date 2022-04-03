@@ -5,12 +5,16 @@ function SideMenu({ menuVisible, setMenuVisible }) {
       setMenuVisible(false);
    };
 
-   console.log(menuVisible);
    return (
       <div className={menuVisible ? "sidemenu active" : "sidemenu"}>
          <div className="top">
             <div className="profile">
-               <span style={{ fontSize: "30px", color: "white" }}>
+               <span
+                  style={{
+                     cursor: "pointer",
+                     fontSize: "30px",
+                     color: "white",
+                  }}>
                   (profile)
                </span>
             </div>

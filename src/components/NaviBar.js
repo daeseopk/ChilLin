@@ -6,6 +6,7 @@ import { auth } from "../firebase";
 import "../Styles/NaviBar.css";
 import SideMenu from "./SideMenu.js";
 import { useState } from "react";
+import styled from "styled-components";
 
 function NaviBar() {
    const [menuVisible, setMenuVisible] = useState(false);
@@ -20,6 +21,23 @@ function NaviBar() {
    const onMenuClick = () => {
       setMenuVisible(!menuVisible);
    };
+   const Unknown = styled.img`
+      position: absolute;
+      justify-content: flex-end;
+      right: 100px;
+      top: 20px;
+      height: 30px;
+      width: 30px;
+      background-color: white;
+      border-radius: 50px;
+   `;
+   // const user = JSON.parse(
+   //    window.sessionStorage.getItem(
+   //       "firebase:authUser:AIzaSyAUFNVPsLXeaIapM-Vfv1OXQQ_tRpDjSks:[DEFAULT]"
+   //    )
+   // );
+   const loginStatus = window.sessionStorage.getItem("Login");
+
    return (
       <div className="navbar">
          <SideMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
@@ -44,23 +62,58 @@ function NaviBar() {
                width: "100%",
                color: "White",
             }}>{`Login Status : ${window.sessionStorage.getItem("Login")}`}</p>
-         <div className="ItemContainer">
-            <div
-               style={{
-                  position: "absolute",
-                  right: "130px",
-               }}></div>
-            <Link to="/SignIn" className="naviBtn" style={{ right: "40px" }}>
-               <Button style={{ fontSize: "15px" }} color="inherit">
-                  Sign In
-               </Button>
-            </Link>
-            <button
-               onClick={onClick}
-               style={{ position: "absolute", right: "150px", top: "20px" }}>
-               logout
-            </button>
-         </div>
+         {loginStatus === "false" || loginStatus === null ? (
+            <div className="ItemContainer">
+               <Link to="/SignIn" className="naviBtn" style={{ right: "40px" }}>
+                  <Button style={{ fontSize: "15px" }} color="inherit">
+                     Sign In
+                  </Button>
+               </Link>
+            </div>
+         ) : (
+            <div className="ItemContainer">
+               <div>
+                  <button
+                     onClick={onClick}
+                     style={{
+                        position: "absolute",
+                        justifyContent: "flex-end",
+                        right: "200px",
+                        top: "20px",
+                     }}>
+                     logout
+                  </button>
+                  <span
+                     style={{
+                        color: "white",
+                        fontSize: "30px",
+                        position: "absolute",
+                        justifyContent: "flex-end",
+                        right: "150px",
+                        top: "20px",
+                     }}>
+                     ♡
+                  </span>
+                  <Unknown
+                     src={require("../Images/unknown.png")}
+                     alt="unknown"
+                  />
+                  <button
+                     style={{
+                        position: "absolute",
+                        justifyContent: "flex-end",
+                        color: "white",
+                        backgroundColor: "#161616",
+                        fontSize: "17px",
+                        border: "none",
+                        right: "30px",
+                        top: "22px",
+                     }}>
+                     HELP
+                  </button>
+               </div>
+            </div>
+         )}
       </div>
    );
 }

@@ -16,7 +16,6 @@ function Home() {
    useEffect(() => {
       getMoives();
    }, []);
-   console.log(window.sessionStorage.getItem("Login"));
    return (
       <div className={styles.container}>
          {loading ? (
