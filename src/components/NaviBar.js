@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import Button from "@mui/material/Button";
-import { auth } from "../firebase";
+import { auth, firebaseInstance } from "../firebase";
 import "../Styles/NaviBar.css";
 import SideMenu from "./SideMenu.js";
 import { useState } from "react";
@@ -10,6 +10,7 @@ import styled from "styled-components";
 
 function NaviBar() {
    const [menuVisible, setMenuVisible] = useState(false);
+
    const logout = async () => {
       await auth.signOut();
    };
@@ -21,23 +22,28 @@ function NaviBar() {
    const onMenuClick = () => {
       setMenuVisible(!menuVisible);
    };
-   const Unknown = styled.img`
+   const Profile = styled.img`
       position: absolute;
       justify-content: flex-end;
       right: 100px;
       top: 20px;
       height: 30px;
       width: 30px;
-      background-color: white;
       border-radius: 50px;
    `;
+   const loginStatus = window.sessionStorage.getItem("Login");
+   const user = JSON.parse(
+      window.sessionStorage.getItem(
+         "firebase:authUser:AIzaSyAUFNVPsLXeaIapM-Vfv1OXQQ_tRpDjSks:[DEFAULT]"
+      )
+   );
+
    // const user = JSON.parse(
    //    window.sessionStorage.getItem(
    //       "firebase:authUser:AIzaSyAUFNVPsLXeaIapM-Vfv1OXQQ_tRpDjSks:[DEFAULT]"
    //    )
    // );
-   const loginStatus = window.sessionStorage.getItem("Login");
-
+   console.log(user);
    return (
       <div className="navbar">
          <SideMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
@@ -83,21 +89,28 @@ function NaviBar() {
                      }}>
                      logout
                   </button>
-                  <span
+                  <img
+                     src={require("../Images/Heart.png")}
+                     alt="Heart"
                      style={{
-                        color: "white",
-                        fontSize: "30px",
+                        width: "25px",
+                        height: "25px",
                         position: "absolute",
                         justifyContent: "flex-end",
+                        fontSize: "17px",
                         right: "150px",
-                        top: "20px",
-                     }}>
-                     ♡
-                  </span>
-                  <Unknown
-                     src={require("../Images/unknown.png")}
-                     alt="unknown"
+                        top: "22px",
+                     }}
                   />
+                  {user.photoURL ? (
+                     <Profile alt="profile" src={user.photoURL} />
+                  ) : (
+                     <Profile
+                        src={require("../Images/defaultProfile.png")}
+                        alt="unknown"
+                     />
+                  )}
+
                   <button
                      style={{
                         position: "absolute",
