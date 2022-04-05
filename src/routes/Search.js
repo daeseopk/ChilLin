@@ -8,12 +8,13 @@ import axios from "axios";
 import "../Styles/Search.css";
 import Recommend from "../components/Recommend";
 import GridTemplate from "../components/GridTemplate";
+import { useParams } from "react-router-dom";
 
 function Search() {
    const [loading, setLoading] = useState(true);
    const [movies, setMovies] = useState([]);
-   const key = window.sessionStorage.getItem("key");
-
+   const { key } = useParams();
+   console.log(key);
    const getMoives = async () => {
       const response = await axios.get(
          `https://api.themoviedb.org/3/search/movie?api_key=83f61a3baf6174f8aeb8a593cc236386&query=${key}`

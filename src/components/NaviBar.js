@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import Button from "@mui/material/Button";
-import { auth, firebaseInstance } from "../firebase";
+import { auth } from "../firebase";
 import "../Styles/NaviBar.css";
 import SideMenu from "./SideMenu.js";
 import { useState } from "react";

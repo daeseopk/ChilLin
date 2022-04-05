@@ -20,8 +20,7 @@ function SearchBar({ width, value }) {
    });
    const { handleSubmit, control } = useForm();
    function onSubmit(d) {
-      window.sessionStorage.setItem("key", d.input);
-      window.location.href = "/Search";
+      window.location.href = `/Search/word=${d.input}`;
    }
    return (
       <form onSubmit={handleSubmit(onSubmit)}>

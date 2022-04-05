@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/Search.css";
 import styles from "../Styles/Dots.module.css";
+import Rating from "./Rating";
 
 function GridTemplate({ movies }) {
    const [page, setPage] = useState(1);
    const IMAGE_URL = "https://image.tmdb.org/t/p/original";
-   const NoExistImg = "../Images/NotExistImg.jpg";
 
    const onClick = (e) => {
       if (e.target.id === "0") setPage(1);
@@ -22,18 +22,24 @@ function GridTemplate({ movies }) {
                        var posterPath = "";
                        if (movie.poster_path) {
                           posterPath = IMAGE_URL + movie.poster_path;
-                       } else posterPath = NoExistImg;
+                       } else posterPath = require("../Images/NotExistImg.png");
                        return (
-                          <Link
-                             style={{ display: "contents" }}
-                             to={`/Detail/:${movie.id}`}>
-                             <div
-                                key={index}
-                                className="movies"
-                                style={{
-                                   backgroundImage: `url(${posterPath})`,
-                                }}></div>
-                          </Link>
+                          <div key={movie.id}>
+                             <Link
+                                style={{ display: "contents" }}
+                                to={`/Detail/:${movie.id}`}>
+                                <img
+                                   style={{ margin: "0px" }}
+                                   src={posterPath}
+                                   alt={movie.title}
+                                   className="movies"
+                                />
+                             </Link>
+                             <Rating
+                                rating={movie.vote_average}
+                                title={movie.title}
+                             />
+                          </div>
                        );
                     } else {
                        return false;
@@ -44,23 +50,31 @@ function GridTemplate({ movies }) {
                        var posterPath = "";
                        if (movie.poster_path) {
                           posterPath = IMAGE_URL + movie.poster_path;
-                       } else posterPath = NoExistImg;
+                       } else posterPath = require("../Images/NotExistImg.png");
                        return (
-                          <Link to={`/Detail/:${movie.id}`}>
-                             <div
-                                key={index}
-                                className="movies"
-                                style={{
-                                   backgroundImage: `url(${posterPath})`,
-                                }}></div>
-                          </Link>
+                          <div key={movie.id}>
+                             <Link
+                                style={{ display: "contents" }}
+                                to={`/Detail/:${movie.id}`}>
+                                <img
+                                   style={{ margin: "0px" }}
+                                   src={posterPath}
+                                   alt={movie.title}
+                                   className="movies"
+                                />
+                             </Link>
+                             <Rating
+                                rating={movie.vote_average}
+                                title={movie.title}
+                             />
+                          </div>
                        );
                     } else {
                        return false;
                     }
                  })}
          </div>
-         <div className="dotsWrapper">
+         <div className={styles.dotsWrapper}>
             <span
                onClick={onClick}
                id="0"

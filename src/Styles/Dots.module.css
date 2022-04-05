@@ -14,3 +14,28 @@
 .dots_unselected:hover {
    color: #fff;
 }
+.dotsWrapper {
+   position: absolute;
+   bottom: 3%;
+   align-items: center;
+   left: 50%;
+   transform: translateX(-50%);
+}
+@media screen and (max-width: 1300px) {
+   .dotsWrapper {
+      position: absolute;
+      bottom: -2%;
+      align-items: center;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+}
+@media screen and (max-width: 1050px) {
+   .dotsWrapper {
+      position: absolute;
+      bottom: -5%;
+      align-items: center;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+}
