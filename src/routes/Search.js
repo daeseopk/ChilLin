@@ -14,7 +14,6 @@ function Search() {
    const [loading, setLoading] = useState(true);
    const [movies, setMovies] = useState([]);
    const { key } = useParams();
-   console.log(key);
    const getMoives = async () => {
       const response = await axios.get(
          `https://api.themoviedb.org/3/search/movie?api_key=83f61a3baf6174f8aeb8a593cc236386&query=${key}`

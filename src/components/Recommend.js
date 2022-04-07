@@ -17,7 +17,6 @@ function Recommend() {
             setRecommend(result.data.results);
             setLoading(false);
          } catch (error) {
-            alert(error);
             console.log(error);
          }
       };

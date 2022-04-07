@@ -24,12 +24,11 @@ function GridTemplate({ movies }) {
                           posterPath = IMAGE_URL + movie.poster_path;
                        } else posterPath = require("../Images/NotExistImg.png");
                        return (
-                          <div key={movie.id}>
+                          <div className="posterWrapper" key={movie.id}>
                              <Link
                                 style={{ display: "contents" }}
-                                to={`/Detail/:${movie.id}`}>
+                                to={`/Detail/id=${movie.id}`}>
                                 <img
-                                   style={{ margin: "0px" }}
                                    src={posterPath}
                                    alt={movie.title}
                                    className="movies"
@@ -38,6 +37,8 @@ function GridTemplate({ movies }) {
                              <Rating
                                 rating={movie.vote_average}
                                 title={movie.title}
+                                margin={"0 auto"}
+                                marginBottom={"40px"}
                              />
                           </div>
                        );

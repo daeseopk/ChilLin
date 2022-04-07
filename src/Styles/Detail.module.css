@@ -1,0 +1,65 @@
+.Container {
+   width: 100%;
+   height: 1080px;
+   overflow: hidden;
+}
+.bodyWrapper {
+   display: flex;
+   position: relative;
+   top: 88px;
+   width: 69%;
+   height: 55%;
+   margin: 0 auto;
+}
+.menuWrapper {
+   align-items: flex-start;
+}
+.spanBtn {
+   margin-right: 20px;
+   color: #9f9ab1;
+   cursor: pointer;
+   transition: all ease 0.3s;
+}
+.spanBtn:hover {
+   color: black;
+}
+.title {
+   margin-top: 50px;
+   margin-bottom: 0px;
+   font-family: NotoSansOriya;
+   font-size: 50px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -3px;
+   text-align: left;
+   color: #fff;
+}
+.overview {
+   margin-top: 50px;
+   font-family: NotoSansOriya;
+   font-size: 20px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -1.2px;
+   text-align: left;
+   color: #fff;
+}
+.viewmore {
+   margin-top: 60px;
+   color: white;
+}
+.text {
+   display: flex;
+   position: relative;
+   color: #9f9ab1;
+   font-size: 13px;
+   margin-bottom: 10px;
+}
+.text span,
+p {
+   margin-right: 6px;
+}

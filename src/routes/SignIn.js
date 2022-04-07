@@ -18,7 +18,9 @@ function SignIn() {
       const data = await auth.signInWithPopup(provider);
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
       window.location.replace("/Home");
-      if (data.additionalUserInfo) window.sessionStorage.setItem("Login", true);
+      if (data.additionalUserInfo) {
+         window.sessionStorage.setItem("Login", true);
+      }
    };
    useEffect(() => {
       if (window.localStorage.getItem("rememberId")) {

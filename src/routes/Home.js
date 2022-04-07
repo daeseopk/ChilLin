@@ -24,12 +24,7 @@ function Home() {
             </div>
          ) : (
             <div className={styles.bodyContainer}>
-               <div
-                  style={{
-                     backgroundColor: "#161616",
-                     height: "60px",
-                     width: "100%",
-                  }}>
+               <div className={styles.NavbarContainer}>
                   <NaviBar />
                </div>
                <div className="searchBarContainer">

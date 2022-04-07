@@ -43,90 +43,106 @@ function NaviBar() {
    //       "firebase:authUser:AIzaSyAUFNVPsLXeaIapM-Vfv1OXQQ_tRpDjSks:[DEFAULT]"
    //    )
    // );
-   console.log(user);
    return (
-      <div className="navbar">
-         <SideMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
-         <div onClick={onMenuClick}>
-            <FaIcons.FaBars className="menuicon" />
-         </div>
-         <div
-            style={{
-               marginLeft: "3%",
-               height: "90%",
-            }}>
-            <Link to="/Home">
-               <img
-                  className="Logo"
-                  src={require("../Images/Logo.png")}
-                  alt="logo"
-               />
-            </Link>
-         </div>
-         <p
-            style={{
-               width: "100%",
-               color: "White",
-            }}>{`Login Status : ${window.sessionStorage.getItem("Login")}`}</p>
-         {loginStatus === "false" || loginStatus === null ? (
-            <div className="ItemContainer">
-               <Link to="/SignIn" className="naviBtn" style={{ right: "40px" }}>
-                  <Button style={{ fontSize: "15px" }} color="inherit">
-                     Sign In
-                  </Button>
+      <div className="NavBarContainer">
+         <div className="navbar">
+            <SideMenu
+               menuVisible={menuVisible}
+               setMenuVisible={setMenuVisible}
+            />
+            <div onClick={onMenuClick}>
+               <FaIcons.FaBars className="menuicon" />
+            </div>
+            <div
+               style={{
+                  marginLeft: "3%",
+                  height: "90%",
+               }}>
+               <Link to="/Home">
+                  <img
+                     className="Logo"
+                     src={require("../Images/Logo.png")}
+                     alt="logo"
+                  />
                </Link>
             </div>
-         ) : (
-            <div className="ItemContainer">
-               <div>
-                  <button
-                     onClick={onClick}
-                     style={{
-                        position: "absolute",
-                        justifyContent: "flex-end",
-                        right: "200px",
-                        top: "20px",
-                     }}>
-                     logout
-                  </button>
-                  <img
-                     src={require("../Images/Heart.png")}
-                     alt="Heart"
-                     style={{
-                        width: "25px",
-                        height: "25px",
-                        position: "absolute",
-                        justifyContent: "flex-end",
-                        fontSize: "17px",
-                        right: "150px",
-                        top: "22px",
-                     }}
-                  />
-                  {user.photoURL ? (
-                     <Profile alt="profile" src={user.photoURL} />
-                  ) : (
-                     <Profile
-                        src={require("../Images/defaultProfile.png")}
-                        alt="unknown"
-                     />
-                  )}
-
-                  <button
-                     style={{
-                        position: "absolute",
-                        justifyContent: "flex-end",
-                        color: "white",
-                        backgroundColor: "#161616",
-                        fontSize: "17px",
-                        border: "none",
-                        right: "30px",
-                        top: "22px",
-                     }}>
-                     HELP
-                  </button>
+            <p
+               style={{
+                  width: "100%",
+                  color: "White",
+               }}>{`Login Status : ${window.sessionStorage.getItem(
+               "Login"
+            )}`}</p>
+            {loginStatus === "false" || loginStatus === null ? (
+               <div className="ItemContainer">
+                  <Link
+                     to="/SignIn"
+                     className="naviBtn"
+                     style={{ right: "130px" }}>
+                     <Button style={{ fontSize: "15px" }} color="inherit">
+                        Sign In
+                     </Button>
+                  </Link>
+                  <Link
+                     to="/Help"
+                     className="naviBtn"
+                     style={{ right: "50px" }}>
+                     <Button style={{ fontSize: "15px" }} color="inherit">
+                        Help
+                     </Button>
+                  </Link>
                </div>
-            </div>
-         )}
+            ) : (
+               <div className="ItemContainer">
+                  <div>
+                     <button
+                        onClick={onClick}
+                        style={{
+                           position: "absolute",
+                           justifyContent: "flex-end",
+                           right: "200px",
+                           top: "20px",
+                        }}>
+                        logout
+                     </button>
+                     <img
+                        src={require("../Images/Heart.png")}
+                        alt="Heart"
+                        style={{
+                           width: "25px",
+                           height: "25px",
+                           position: "absolute",
+                           justifyContent: "flex-end",
+                           fontSize: "17px",
+                           right: "150px",
+                           top: "22px",
+                        }}
+                     />
+                     {user.photoURL ? (
+                        <Profile alt="profile" src={user.photoURL} />
+                     ) : (
+                        <Profile
+                           src={require("../Images/defaultProfile.png")}
+                           alt="unknown"
+                        />
+                     )}
+                     <button
+                        style={{
+                           position: "absolute",
+                           justifyContent: "flex-end",
+                           color: "white",
+                           backgroundColor: "#161616",
+                           fontSize: "17px",
+                           border: "none",
+                           right: "30px",
+                           top: "22px",
+                        }}>
+                        HELP
+                     </button>
+                  </div>
+               </div>
+            )}
+         </div>
       </div>
    );
 }
