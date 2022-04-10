@@ -2,13 +2,22 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import styled from "styled-components";
 
 export default function BasicRating({ rating, title, marginBottom, margin }) {
+   const StyledRating = styled(Rating)`
+      .MuiRating-decimal {
+         color: white;
+      }
+      .MuiRating-iconEmpty {
+         color: grey;
+      }
+   `;
    rating = rating / 2;
    return (
       <Stack spacing={1}>
          <Typography component="legend">{title}</Typography>
-         <Rating
+         <StyledRating
             style={{
                margin: margin,
                marginBottom: marginBottom,

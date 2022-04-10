@@ -1,18 +1,16 @@
 .Container {
+   display: block;
    width: 100%;
    height: 1080px;
    overflow: hidden;
 }
 .bodyWrapper {
-   display: flex;
+   display: block;
    position: relative;
-   top: 88px;
    width: 69%;
    height: 55%;
    margin: 0 auto;
-}
-.menuWrapper {
-   align-items: flex-start;
+   margin-left: 100px;
 }
 .spanBtn {
    margin-right: 20px;
@@ -23,11 +21,25 @@
 .spanBtn:hover {
    color: black;
 }
+.posterWrapper {
+   position: flex-start;
+   width: 270px;
+   height: 405px;
+}
+.poster {
+   width: 270px;
+   height: 405px;
+}
+.header {
+   display: block;
+   align-items: flex-start;
+   width: 100%;
+}
 .title {
-   margin-top: 50px;
+   margin-top: 0px;
    margin-bottom: 0px;
    font-family: NotoSansOriya;
-   font-size: 50px;
+   font-size: 100px;
    font-weight: bold;
    font-stretch: normal;
    font-style: normal;
@@ -56,8 +68,8 @@
    display: flex;
    position: relative;
    color: #9f9ab1;
-   font-size: 13px;
-   margin-bottom: 10px;
+   font-size: 25px;
+   margin-bottom: 20px;
 }
 .text span,
 p {

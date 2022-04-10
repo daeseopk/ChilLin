@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Rating from "../components/Rating";
 
 export default function Poster({
-   backgroundImg,
+   poster,
    title,
    overview,
    release_date,
@@ -14,28 +14,25 @@ export default function Poster({
 }) {
    var Runtime = [];
    if (runtime / 60 >= 0) {
-      Runtime[0] = Math.round(runtime / 60);
+      Runtime[0] = Math.floor(runtime / 60);
       Runtime[1] = runtime - Runtime[0] * 60;
    } else Runtime[1] = runtime;
 
    const PosterContainer = styled.div`
+      display: flex;
       position: relative;
       margin: 0 auto;
       top: 169px;
       width: 68%;
       height: 68%;
-      background-image: url(${backgroundImg});
-      background-size: cover;
-      border-radius: 13px;
    `;
    return (
       <PosterContainer>
+         <div className={styles.posterWrapper}>
+            <img className={styles.poster} src={poster} alt="poster" />
+         </div>
          <div className={styles.bodyWrapper}>
-            <div className={styles.menuWrapper}>
-               <span className={styles.spanBtn}>ABOUT</span>
-               <span className={styles.spanBtn}>VIDEOS</span>
-               <span className={styles.spanBtn}>FEATURED</span>
-               <span className={styles.spanBtn}>GALLERY</span>
+            <div className={styles.header}>
                <h1 className={styles.title}>{title}</h1>
                <div className={styles.text}>
                   <span className={styles.year}>
@@ -49,7 +46,7 @@ export default function Poster({
                   <span>{`| ${Runtime[0]}h ${Runtime[1]}m`}</span>
                   <span
                      style={{
-                        fontSize: "15px",
+                        fontSize: "25px",
                         cursor: "pointer",
                         color: "white",
                      }}>
@@ -57,9 +54,8 @@ export default function Poster({
                   </span>
                </div>
                <Rating rating={rating} marginBottom={"0px"} margin={"0px"} />
-               <p className={styles.overview}>{overview}</p>
-               <p className={styles.viewmore}>VIEW MORE</p>
             </div>
+            <p className={styles.overview}>{overview}</p>
          </div>
       </PosterContainer>
    );

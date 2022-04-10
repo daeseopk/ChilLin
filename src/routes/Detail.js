@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import MovieDetail from "../components/MovieDetail";
 import NaviBar from "../components/NaviBar";
 import styles from "../Styles/Detail.module.css";
 import styled from "styled-components";
@@ -39,10 +38,18 @@ function Detail() {
       height: 100%;
       background-image: url(${backgroundImg});
       background-size: cover;
-      -webkit-filter: blur(13.2px);
-      filter: blur(13.2px);
-      transform: scale(1.02);
+      // opacity: 1;
       z-index: -1;
+      ::before {
+         content: "";
+         opacity: 0.6;
+         position: absolute;
+         top: 0px;
+         left: 0px;
+         right: 0px;
+         bottom: 0px;
+         background-color: #000;
+      }
    `;
 
    return (
@@ -54,7 +61,7 @@ function Detail() {
                <BackgroundImage></BackgroundImage>
                <NaviBar />
                <Poster
-                  backgroundImg={backgroundImg}
+                  poster={IMAGE_URL + movie.poster_path}
                   title={movie.title}
                   overview={movie.overview}
                   release_date={movie.release_date}
