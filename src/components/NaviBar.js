@@ -37,12 +37,6 @@ function NaviBar() {
          "firebase:authUser:AIzaSyAUFNVPsLXeaIapM-Vfv1OXQQ_tRpDjSks:[DEFAULT]"
       )
    );
-
-   // const user = JSON.parse(
-   //    window.sessionStorage.getItem(
-   //       "firebase:authUser:AIzaSyAUFNVPsLXeaIapM-Vfv1OXQQ_tRpDjSks:[DEFAULT]"
-   //    )
-   // );
    return (
       <div className="NavBarContainer">
          <div className="navbar">

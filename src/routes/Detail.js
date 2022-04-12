@@ -10,8 +10,13 @@ import Poster from "../components/Poster";
 function Detail() {
    const [movie, setMovie] = useState();
    const [loading, setLoading] = useState(true);
+   const [ScrollY, setScrollY] = useState();
+   const [opacity, setOpacity] = useState();
    const { id } = useParams();
    const IMAGE_URL = "https://image.tmdb.org/t/p/original";
+   const handleFollow = () => {
+      setScrollY(window.pageYOffset); // window 스크롤 값을 ScrollY에 저장
+   };
 
    useEffect(() => {
       const getMovies = async () => {
@@ -28,30 +33,53 @@ function Detail() {
       };
       getMovies();
    }, []);
+   useEffect(() => {
+      setOpacity((0.4 + 0.001 * ScrollY).toFixed(2));
+   }, [ScrollY]);
+   useEffect(() => {
+      const watch = () => {
+         window.addEventListener("scroll", handleFollow);
+      };
+      watch();
+      return () => {
+         window.removeEventListener("scroll", handleFollow);
+      };
+   }, []);
+
    if (movie) {
       var backgroundImg = IMAGE_URL + movie.backdrop_path;
    }
-   console.log(movie);
    const BackgroundImage = styled.div`
-      position: fixed;
+      position: absolute;
       width: 100%;
       height: 100%;
-      background-image: url(${backgroundImg});
+      background-image: linear-gradient(
+            to bottom,
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0),
+            rgba(22, 22, 22, 0.3),
+            rgba(22, 22, 22, 0.5),
+            rgba(22, 22, 22, 1)
+         ),
+         url(${backgroundImg});
       background-size: cover;
-      // opacity: 1;
-      z-index: -1;
+      z-index: 1;
       ::before {
          content: "";
-         opacity: 0.6;
+         opacity: ${isNaN(opacity) ? 0.4 : opacity};
          position: absolute;
          top: 0px;
          left: 0px;
          right: 0px;
          bottom: 0px;
-         background-color: #000;
+         background-color: #161616;
       }
    `;
-
    return (
       <div>
          {loading ? (
@@ -62,6 +90,7 @@ function Detail() {
                <NaviBar />
                <Poster
                   poster={IMAGE_URL + movie.poster_path}
+                  poster_NoneExist={require("../Images/NotExistImg.png")}
                   title={movie.title}
                   overview={movie.overview}
                   release_date={movie.release_date}

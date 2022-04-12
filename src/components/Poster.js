@@ -11,6 +11,7 @@ export default function Poster({
    genres,
    runtime,
    rating,
+   poster_NoneExist,
 }) {
    var Runtime = [];
    if (runtime / 60 >= 0) {
@@ -25,11 +26,21 @@ export default function Poster({
       top: 169px;
       width: 68%;
       height: 68%;
+      z-index: 2;
    `;
+   console.log(poster);
    return (
-      <PosterContainer>
+      <PosterContainer className={styles.PosterContainer}>
          <div className={styles.posterWrapper}>
-            <img className={styles.poster} src={poster} alt="poster" />
+            <img
+               className={styles.poster}
+               src={
+                  poster === "https://image.tmdb.org/t/p/originalnull"
+                     ? poster_NoneExist
+                     : poster
+               }
+               alt="poster"
+            />
          </div>
          <div className={styles.bodyWrapper}>
             <div className={styles.header}>
