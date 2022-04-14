@@ -19,18 +19,8 @@ export default function Poster({
       Runtime[1] = runtime - Runtime[0] * 60;
    } else Runtime[1] = runtime;
 
-   const PosterContainer = styled.div`
-      display: flex;
-      position: relative;
-      margin: 0 auto;
-      top: 169px;
-      width: 68%;
-      height: 68%;
-      z-index: 2;
-   `;
-   console.log(poster);
    return (
-      <PosterContainer className={styles.PosterContainer}>
+      <div className={styles.PosterContainer}>
          <div className={styles.posterWrapper}>
             <img
                className={styles.poster}
@@ -68,6 +58,6 @@ export default function Poster({
             </div>
             <p className={styles.overview}>{overview}</p>
          </div>
-      </PosterContainer>
+      </div>
    );
 }

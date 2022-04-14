@@ -4,6 +4,15 @@
    height: 2080px;
    background-color: #161616;
 }
+.PosterContainer {
+   display: flex;
+   position: relative;
+   margin: 0 auto;
+   top: 169px;
+   width: 68%;
+   height: contents;
+   z-index: 2;
+}
 .bodyWrapper {
    display: block;
    position: relative;
