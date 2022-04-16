@@ -1,0 +1,53 @@
+.DetailContainer {
+   color: white;
+   position: relative;
+   background: none;
+   top: 50vh;
+   height: 50%;
+   z-index: 3;
+   margin-top: 100px;
+   transition: all ease 0.6s;
+   opacity: 1;
+}
+.DetailContainerHidden {
+   color: white;
+   position: relative;
+   background: none;
+   top: 50vh;
+   height: 50%;
+   z-index: 3;
+   margin-top: 100px;
+   transition: all ease 0.6s;
+   opacity: 0;
+}
+.ScrollerWrapper {
+   white-space: nowrap;
+   overflow-x: scroll;
+   width: 1000px;
+   height: fit-content;
+   margin: 0px;
+   margin-left: 50px;
+}
+.ScrollerTitle {
+   position: absolute;
+   top: -50px;
+   margin-top: 0px;
+   font-family: NotoSansOriya;
+   font-size: 30px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -1.5px;
+   text-align: left;
+   color: #fff;
+}
+.Scroller {
+   padding: 0px;
+   margin: 0px;
+}
+.card {
+   z-index: 1;
+   display: inline-block;
+   margin-right: 40px;
+}

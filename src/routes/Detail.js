@@ -6,6 +6,8 @@ import styles from "../Styles/Detail.module.css";
 import Poster from "../components/Poster";
 import DetailButton from "../components/DetailButton";
 import BackgroundImage from "../components/BackgroundImage";
+import Details from "../components/Details";
+import Comments from "../components/Comments";
 
 function Detail() {
    const [movie, setMovie] = useState();
@@ -13,6 +15,8 @@ function Detail() {
    const [moveButtonTrigger, setMoveButtonTrigger] = useState(false);
    const [ScrollY, setScrollY] = useState();
    const [opacity, setOpacity] = useState();
+   const [opacity_details, setOpacity_details] = useState(0);
+   const [Toggle, setToggle] = useState(null);
    const { id } = useParams();
    const IMAGE_URL = "https://image.tmdb.org/t/p/original";
    const handleFollow = () => {
@@ -37,8 +41,17 @@ function Detail() {
       if (ScrollY % Sensitivity === 0) {
          setOpacity((0.4 + 0.001 * ScrollY).toFixed(2));
       }
-      if (ScrollY >= 400) setMoveButtonTrigger(true);
-      if (ScrollY < 500) setMoveButtonTrigger(false);
+      if (ScrollY >= 400) {
+         setMoveButtonTrigger(true);
+         if (Toggle === "DETAILS") {
+            setOpacity_details(1);
+         }
+      }
+
+      if (ScrollY < 500) {
+         setOpacity_details(0);
+         setMoveButtonTrigger(false);
+      }
    }, [ScrollY]);
 
    useEffect(() => {
@@ -50,9 +63,6 @@ function Detail() {
          window.removeEventListener("scroll", handleFollow);
       };
    }, []);
-   if (movie) {
-      var backgroundImg = IMAGE_URL + movie.backdrop_path;
-   }
 
    return (
       <div>
@@ -61,7 +71,7 @@ function Detail() {
          ) : (
             <div className={styles.Container}>
                <BackgroundImage
-                  backgroundImg={backgroundImg}
+                  backgroundImg={IMAGE_URL + movie.backdrop_path}
                   opacity={opacity}
                />
                <NaviBar />
@@ -75,7 +85,17 @@ function Detail() {
                   runtime={movie.runtime}
                   rating={movie.vote_average}
                />
-               <DetailButton moveTrigger={moveButtonTrigger} />
+               <DetailButton
+                  Toggle={Toggle}
+                  setToggle={setToggle}
+                  moveTrigger={moveButtonTrigger}
+               />
+               <Details
+                  id={movie.id}
+                  visibility={Toggle}
+                  opacity_details={opacity_details}
+                  setOpacity_details={setOpacity_details}
+               />{" "}
             </div>
          )}
       </div>
