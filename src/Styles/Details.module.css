@@ -1,5 +1,6 @@
 .DetailContainer {
    color: white;
+   display: flex;
    position: relative;
    background: none;
    top: 50vh;
@@ -7,26 +8,18 @@
    z-index: 3;
    margin-top: 100px;
    transition: all ease 0.6s;
-   opacity: 1;
 }
-.DetailContainerHidden {
-   color: white;
-   position: relative;
-   background: none;
-   top: 50vh;
-   height: 50%;
-   z-index: 3;
-   margin-top: 100px;
-   transition: all ease 0.6s;
-   opacity: 0;
+.ScrollerContainer {
+   display: flex;
 }
 .ScrollerWrapper {
+   display: flex;
+   align-items: center;
    white-space: nowrap;
    overflow-x: scroll;
-   width: 1000px;
-   height: fit-content;
+   width: 920px;
+   height: 260px;
    margin: 0px;
-   margin-left: 50px;
 }
 .ScrollerTitle {
    position: absolute;
@@ -43,11 +36,37 @@
    color: #fff;
 }
 .Scroller {
+   display: flex;
    padding: 0px;
    margin: 0px;
+   height: 250px;
 }
 .card {
-   z-index: 1;
-   display: inline-block;
-   margin-right: 40px;
+   border: 1px black solid;
+   box-shadow: 3px 3px 3px rgb(10, 10, 10);
+   border-radius: 6px;
+   position: relative;
+   display: block;
+   width: inherit;
+   height: 250px;
+}
+.profile {
+   border-radius: 6px 6px 0px 0px;
+   width: 120px;
+   height: 175px;
+}
+.name {
+   text-align: left;
+   margin: 0 auto;
+   margin-left: 3px;
+}
+#originName {
+   font-weight: bold;
+   font-size: 15px;
+   margin-bottom: 7px;
+   white-space: pre-wrap;
+}
+#character {
+   font-size: 12px;
+   white-space: pre-wrap;
 }

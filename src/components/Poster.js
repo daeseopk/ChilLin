@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../Styles/Detail.module.css";
-import styled from "styled-components";
 import Rating from "../components/Rating";
 
 export default function Poster({

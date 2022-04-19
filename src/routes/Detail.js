@@ -16,6 +16,7 @@ function Detail() {
    const [ScrollY, setScrollY] = useState();
    const [opacity, setOpacity] = useState();
    const [opacity_details, setOpacity_details] = useState(0);
+   const [opacity_comments, setOpacity_comments] = useState(0);
    const [Toggle, setToggle] = useState(null);
    const { id } = useParams();
    const IMAGE_URL = "https://image.tmdb.org/t/p/original";
@@ -47,7 +48,6 @@ function Detail() {
             setOpacity_details(1);
          }
       }
-
       if (ScrollY < 500) {
          setOpacity_details(0);
          setMoveButtonTrigger(false);
@@ -90,12 +90,19 @@ function Detail() {
                   setToggle={setToggle}
                   moveTrigger={moveButtonTrigger}
                />
-               <Details
-                  id={movie.id}
-                  visibility={Toggle}
-                  opacity_details={opacity_details}
-                  setOpacity_details={setOpacity_details}
-               />{" "}
+               <div>
+                  <Details
+                     id={movie.id}
+                     visibility={Toggle}
+                     opacity_details={opacity_details}
+                     setOpacity_details={setOpacity_details}
+                  />
+                  <Comments
+                     visibility={Toggle}
+                     opacity_comments={opacity_comments}
+                     setOpacity_comments={setOpacity_comments}
+                  />
+               </div>
             </div>
          )}
       </div>

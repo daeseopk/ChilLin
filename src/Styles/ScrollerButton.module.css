@@ -1,0 +1,21 @@
+.buttonWrapper {
+   position: relative;
+   width: fit-content;
+   height: fit-content;
+   margin-left: 30px;
+   margin-right: 30px;
+}
+.prev,
+.next {
+   transition: 0.5s all ease;
+   cursor: pointer;
+}
+.prevHidden,
+.nextHidden {
+   transition: 0.5s all ease;
+   color: #161616;
+}
+
+.button {
+   margin: 0 auto;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../Styles/Details.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Scroller from "../components/Scroller";
 
 export default function Details({
    visibility,
@@ -11,8 +12,7 @@ export default function Details({
 }) {
    const [people, setPeople] = useState();
    const [loading, setLoading] = useState(true);
-   const [opacity, setOpacity] = useState(0);
-   const IMAGE_URL = "https://image.tmdb.org/t/p/original";
+   const [ScrollerXOffset, setScrollerXOffset] = useState(0);
 
    useEffect(() => {
       if (visibility === "DETAILS") {
@@ -39,26 +39,11 @@ export default function Details({
          style={{ opacity: opacity_details }}
          className={styles.DetailContainer}>
          {loading ? null : (
-            <div className={styles.ScrollerWrapper}>
-               <p className={styles.ScrollerTitle}>Cast & Crew</p>
-               <ul className={styles.Scroller}>
-                  {people.map((people, index) => {
-                     return (
-                        <li className={styles.card} key={index}>
-                           <img
-                              style={{ width: "110px", height: "166px" }}
-                              src={
-                                 people.profile_path
-                                    ? IMAGE_URL + people.profile_path
-                                    : require("../Images/NotExistImg.png")
-                              }
-                              alt={people.name}
-                           />
-                        </li>
-                     );
-                  })}
-               </ul>
-            </div>
+            <Scroller
+               ScrollerXOffset={ScrollerXOffset}
+               setScrollerXOffset={setScrollerXOffset}
+               people={people}
+            />
          )}
       </div>
    );
