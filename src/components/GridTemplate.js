@@ -56,7 +56,7 @@ function GridTemplate({ movies }) {
                           <div className="posterWrapper" key={movie.id}>
                              <Link
                                 style={{ display: "contents" }}
-                                to={`/Detail/:${movie.id}`}>
+                                to={`/Detail/id=${movie.id}`}>
                                 <img
                                    src={posterPath}
                                    alt={movie.title}

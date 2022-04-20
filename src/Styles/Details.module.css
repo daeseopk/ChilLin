@@ -1,16 +1,38 @@
 .DetailContainer {
+   position: absolute;
    color: white;
-   display: flex;
-   position: relative;
    background: none;
-   top: 50vh;
-   height: 50%;
+   top: 40vh;
+   left: 50%;
+   transform: translate(-50%, 0);
+   width: 1400px;
+   height: 1700px;
    z-index: 3;
    margin-top: 100px;
    transition: all ease 0.6s;
 }
-.ScrollerContainer {
+.DetailGridTemplate {
+   width: 100%;
+   height: 100%;
+   display: grid;
+   grid-template-rows: 1fr;
+   grid-template-columns: 4fr 1fr;
+}
+.DetailLeft {
    display: flex;
+   width: 100%;
+   height: 100%;
+}
+.DetailRight {
+   display: flex;
+   width: 100%;
+   height: 100%;
+   border: 2px red solid;
+}
+.ScrollerContainer {
+   display: inline-flex;
+   position: absolute;
+   align-items: center;
 }
 .ScrollerWrapper {
    display: flex;
@@ -69,4 +91,32 @@
 #character {
    font-size: 12px;
    white-space: pre-wrap;
+}
+
+.TrailerContainer {
+   display: block;
+   position: absolute;
+   top: 300px;
+   margin-left: 100px;
+   width: 920px;
+   height: fit-content;
+}
+.PlayerWrapper {
+   width: 920px;
+   height: 517px;
+}
+.trailerTitle {
+   width: fit-content;
+   height: fit-content;
+   font-family: NotoSansOriya;
+   font-size: 30px;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -1.5px;
+   text-align: left;
+   color: #fff;
+   margin: 0px;
+   margin-bottom: 10px;
 }

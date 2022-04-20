@@ -15,7 +15,7 @@ export default function Comments({
       <div
          style={{
             opacity: opacity_comments,
-            position: "relative",
+            position: "absolute",
             border: "2px solid red",
             zIndex: "3",
             top: "50vh",
@@ -26,7 +26,6 @@ export default function Comments({
                border: "2px solid red",
                width: "200px",
                height: "200px",
-
                background: "none",
             }}>
             comments

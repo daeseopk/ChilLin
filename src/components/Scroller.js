@@ -23,7 +23,7 @@ export default function Scroller({
       setScroller_maxWith(ScrollRef.current.scrollWidth);
    };
    const onclick_ScollerButton = (e) => {
-      if (e.target.innerHTML === "prev") {
+      if (e.target.alt === "arrow_left") {
          ScrollRef.current.scrollTo({
             left: ScrollRef.current.scrollLeft - 800,
             behavior: "smooth",
@@ -52,7 +52,7 @@ export default function Scroller({
             <ul className={styles.Scroller}>
                {people.map((people, index) => {
                   return (
-                     <Card>
+                     <Card key={index}>
                         <li className={styles.card} key={index}>
                            <img
                               className={styles.profile}

@@ -3,6 +3,7 @@ import styles from "../Styles/Details.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Scroller from "../components/Scroller";
+import Trailer from "../components/Trailer";
 
 export default function Details({
    visibility,
@@ -39,11 +40,17 @@ export default function Details({
          style={{ opacity: opacity_details }}
          className={styles.DetailContainer}>
          {loading ? null : (
-            <Scroller
-               ScrollerXOffset={ScrollerXOffset}
-               setScrollerXOffset={setScrollerXOffset}
-               people={people}
-            />
+            <div className={styles.DetailGridTemplate}>
+               <div className={styles.DetailLeft}>
+                  <Scroller
+                     ScrollerXOffset={ScrollerXOffset}
+                     setScrollerXOffset={setScrollerXOffset}
+                     people={people}
+                  />
+                  <Trailer id={id} play_trigger={opacity_details} />
+               </div>
+               <div className={styles.DetailRight}>right</div>
+            </div>
          )}
       </div>
    );

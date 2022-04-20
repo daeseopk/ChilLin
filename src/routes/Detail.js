@@ -90,7 +90,7 @@ function Detail() {
                   setToggle={setToggle}
                   moveTrigger={moveButtonTrigger}
                />
-               <div>
+               <div className={styles.Bottom}>
                   <Details
                      id={movie.id}
                      visibility={Toggle}

@@ -10,21 +10,25 @@ export default function ScrollerButton({
    return (
       <div onClick={onclick_ScollerButton} className={styles.buttonWrapper}>
          {position === "prev" ? (
-            <p
+            <img
                className={
-                  ScrollerXOffset == 0 ? styles.prevHidden : styles.prev
-               }>
-               prev
-            </p>
+                  ScrollerXOffset == 0
+                     ? styles.button_leftHidden
+                     : styles.button_left
+               }
+               src={require("../Images/arrow.png")}
+               alt="arrow_left"
+            />
          ) : (
-            <p
+            <img
                className={
                   ScrollerXOffset == Scroller_MaxXOffset - 920
-                     ? styles.nextHidden
-                     : styles.next
-               }>
-               next
-            </p>
+                     ? styles.button_rightHidden
+                     : styles.button_right
+               }
+               src={require("../Images/arrow.png")}
+               alt="arrow_right"
+            />
          )}
       </div>
    );

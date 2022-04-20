@@ -40,8 +40,8 @@ export default function Poster({
                   </span>
                   {genres.map((genre, index) => {
                      if (index === 0) {
-                        return <span>{genre.name}</span>;
-                     } else return <span>/ {genre.name}</span>;
+                        return <span key={index}>{genre.name}</span>;
+                     } else return <span key={index}>/ {genre.name}</span>;
                   })}
                   <span>{`| ${Runtime[0]}h ${Runtime[1]}m`}</span>
                   <span

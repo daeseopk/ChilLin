@@ -50,10 +50,24 @@
 
       -  prev 버튼과 next 버튼 추가
 
-         -  ScrollerWrapper의 Element.scrollLeft 값에 따라 prev 및 next의 opacity 속성에 변화를 주어 애니메이션 구현
+         -  ScrollerWrapper의 Element.scrollLeft 값에 따라 prev 및 next의 opacity 속성에 변화를 주어 애니메이션 구현(임시)
 
          -  ScrollerWrapper 의 Width 길이를 받아오는 과정에서 _useRef()_ HOOK을 사용
 
          -  ScrollerWrapper의 Element.scrollWidth와 스크롤을 오른쪽 끝으로 이동하였을 때 Element.scrollLeft의 값이 같을 것으로 예상했으나 모든 상세 페이지에서 920씩 편차가 생겨 이를 조정하여 next 버튼 애니메이션 구현
 
          -  prev 버튼 및 next 버튼 onClick 시 Scroller 의 위치 전환을 위해 _Element.scrollTo()_ 함수 사용, _behavior: "smooth"_ 옵션까지 주어 부드럽게 애니메이션 처리
+
+-  2022-04-19 - 2022-04-20
+
+   -  _Details.js_
+
+      -  페이지 하단 배치를 위해 display:grid 로 구조 수정(4:1 비율로 작성하였고, 추후 right 부분에 컴포넌트 구현 예정 )
+
+   -  _Trailer.js_
+
+      -  DETAILS 최초 진입 후 페이지 스크롤 특정 위치 시 자동 재생 구현
+
+      -  DETAILS 컴포넌트 가려질 때(페이지 상단 스크롤, COMMENTS click) 재생 정지 구현
+
+      -  DETAILS 컴포넌트 두 번째 이상 진입 시 부터 자동재생 x
