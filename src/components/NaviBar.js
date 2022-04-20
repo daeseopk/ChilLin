@@ -49,7 +49,7 @@ function NaviBar() {
             </div>
             <div
                style={{
-                  marginLeft: "3%",
+                  marginLeft: "30px",
                   height: "90%",
                }}>
                <Link to="/Home">

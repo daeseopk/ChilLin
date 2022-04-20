@@ -1,0 +1,42 @@
+.Loading {
+   display: flex;
+   width: 100%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+   opacity: 0;
+}
+.Loading_ing {
+   display: flex;
+   width: 100%;
+   height: 100%;
+   left: 0px;
+   top: 0px;
+   align-items: center;
+   justify-content: center;
+   transition: 3.5s all ease-in-out;
+   opacity: 1;
+}
+.Loading_done {
+   position: absolute;
+   display: flex;
+   width: 155.43px;
+   height: 10%;
+   left: 115px;
+   top: -19px;
+   align-items: center;
+   justify-content: center;
+   transition: 2s all ease;
+   opacity: 1;
+}
+
+.Logo_loading {
+   width: 155.43px;
+   height: 54px;
+   transition: all ease-in-out 2s;
+}
+.Logo {
+   width: 420px;
+   height: 180px;
+   transition: all ease-in-out 2s;
+}

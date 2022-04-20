@@ -36,6 +36,8 @@
 }
 .Logo {
    height: 100%;
+   opacity: 1;
+   transition: 1.5s all ease-in-out;
 }
 .ItemContainer {
    display: flex;

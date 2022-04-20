@@ -36,7 +36,7 @@
 
       -  onClick 시 component 등장 애니메이션 구현
 
-         -  Detail 페이지 로딩될 때 DETAILS 및 COMMNETS의 opacity 값을 defulat 0 으로 설정함으로써 visibility의 hidden과 비슷하게 구현 후, DETAILS 및 COMMENTS onClick 시 opacity 값에 변화를 주어(1) 애니메이션과 함께 보이도록 구현
+         -  Detail 페이지 로딩될 때 DETAILS 및 COMMENTS의 opacity 값을 defulat 0 으로 설정함으로써 visibility의 hidden과 비슷하게 구현 후, DETAILS 및 COMMENTS onClick 시 opacity 값에 변화를 주어(1) 애니메이션과 함께 보이도록 구현
 
          -  페이지 스크롤 일정 범위 이상으로 올라가게 되면 opacity 값에 변화를 주어(0) component가 보이지 않도록 구현
 
@@ -71,3 +71,11 @@
       -  DETAILS 컴포넌트 가려질 때(페이지 상단 스크롤, COMMENTS click) 재생 정지 구현
 
       -  DETAILS 컴포넌트 두 번째 이상 진입 시 부터 자동재생 x
+
+   -  _Loading.js_
+
+      -  홈 페이지 로딩 애니메이션 구현
+
+      -  sessionstorage 활용하여 홈 페이지 접근 시 최초 한 번만 보이도록 구현
+
+      -  _setTimeout()_ 함수 사용하여 각각 애니메이션에 딜레이 주어 구현하였고 _setLoading()_ 함수를 prop 으로 가져와 모든 애니메이션 종료 시 loading상태를 false로 설정해 홈 화면이 보이도록 구현
