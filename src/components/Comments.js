@@ -1,4 +1,6 @@
 import { React, useEffect } from "react";
+import styles from "../Styles/Comments.module.css";
+import InputComment from "./InputComment";
 
 export default function Comments({
    visibility,
@@ -13,23 +15,11 @@ export default function Comments({
 
    return (
       <div
+         className={styles.CommentsContainer}
          style={{
             opacity: opacity_comments,
-            position: "absolute",
-            border: "2px solid red",
-            zIndex: "3",
-            top: "50vh",
-            transition: "all ease 0.6s",
          }}>
-         <div
-            styles={{
-               border: "2px solid red",
-               width: "200px",
-               height: "200px",
-               background: "none",
-            }}>
-            comments
-         </div>
+         <InputComment />
       </div>
    );
 }

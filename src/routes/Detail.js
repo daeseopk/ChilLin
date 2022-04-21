@@ -46,10 +46,13 @@ function Detail() {
          setMoveButtonTrigger(true);
          if (Toggle === "DETAILS") {
             setOpacity_details(1);
+         } else if (Toggle === "COMMENTS") {
+            setOpacity_comments(1);
          }
       }
       if (ScrollY < 500) {
          setOpacity_details(0);
+         setOpacity_comments(0);
          setMoveButtonTrigger(false);
       }
    }, [ScrollY]);

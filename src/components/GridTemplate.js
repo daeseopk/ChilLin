@@ -39,6 +39,7 @@ function GridTemplate({ movies }) {
                                 title={movie.title}
                                 margin={"0 auto"}
                                 marginBottom={"40px"}
+                                readOnly={true}
                              />
                           </div>
                        );

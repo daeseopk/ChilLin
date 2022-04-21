@@ -53,7 +53,12 @@ export default function Poster({
                      ♡
                   </span>
                </div>
-               <Rating rating={rating} marginBottom={"0px"} margin={"0px"} />
+               <Rating
+                  rating={rating}
+                  marginBottom={"0px"}
+                  margin={"0px"}
+                  readOnly={true}
+               />
             </div>
             <p className={styles.overview}>{overview}</p>
          </div>

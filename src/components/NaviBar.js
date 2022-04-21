@@ -125,7 +125,7 @@ function NaviBar() {
                            position: "absolute",
                            justifyContent: "flex-end",
                            color: "white",
-                           backgroundColor: "#161616",
+                           backgroundColor: "inherit",
                            fontSize: "17px",
                            border: "none",
                            right: "30px",

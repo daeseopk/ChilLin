@@ -68,7 +68,7 @@
 
       -  DETAILS 최초 진입 후 페이지 스크롤 특정 위치 시 자동 재생 구현
 
-      -  DETAILS 컴포넌트 가려질 때(페이지 상단 스크롤, COMMENTS click) 재생 정지 구현
+      -  DETAILS 컴포넌트 가려질 때(페이지 상단 스크롤, COMMENTS onClick) 재생 정지 구현
 
       -  DETAILS 컴포넌트 두 번째 이상 진입 시 부터 자동재생 x
 
