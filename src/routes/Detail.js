@@ -66,7 +66,7 @@ function Detail() {
          window.removeEventListener("scroll", handleFollow);
       };
    }, []);
-
+   // console.log(ScrollY);
    return (
       <div>
          {loading ? (
@@ -104,6 +104,8 @@ function Detail() {
                      visibility={Toggle}
                      opacity_comments={opacity_comments}
                      setOpacity_comments={setOpacity_comments}
+                     id={movie.id}
+                     setToggle={setToggle}
                   />
                </div>
             </div>
