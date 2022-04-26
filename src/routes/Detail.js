@@ -96,14 +96,14 @@ function Detail() {
                <div className={styles.Bottom}>
                   <Details
                      id={movie.id}
-                     visibility={Toggle}
-                     opacity_details={opacity_details}
-                     setOpacity_details={setOpacity_details}
+                     Toggle={Toggle}
+                     visibility={opacity_details}
+                     setVisibility={setOpacity_details}
                   />
                   <Comments
-                     visibility={Toggle}
-                     opacity_comments={opacity_comments}
-                     setOpacity_comments={setOpacity_comments}
+                     Toggle={Toggle}
+                     visibility={opacity_comments}
+                     setVisibility={setOpacity_comments}
                      id={movie.id}
                      setToggle={setToggle}
                   />

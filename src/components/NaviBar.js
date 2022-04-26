@@ -9,6 +9,15 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import firebase from "../firebase";
 
+const Profile = styled.img`
+   position: absolute;
+   justify-content: flex-end;
+   right: 100px;
+   top: 20px;
+   height: 30px;
+   width: 30px;
+   border-radius: 50px;
+`;
 function NaviBar() {
    const [menuVisible, setMenuVisible] = useState(false);
    const [currentUser, setCurrentUser] = useState();
@@ -35,15 +44,7 @@ function NaviBar() {
    const onMenuClick = () => {
       setMenuVisible(!menuVisible);
    };
-   const Profile = styled.img`
-      position: absolute;
-      justify-content: flex-end;
-      right: 100px;
-      top: 20px;
-      height: 30px;
-      width: 30px;
-      border-radius: 50px;
-   `;
+
    const loginStatus = window.sessionStorage.getItem("Login");
 
    return (
@@ -123,7 +124,14 @@ function NaviBar() {
                            }}
                         />
                         {currentUser ? (
-                           <Profile alt="profile" src={currentUser.photoURL} />
+                           <Profile
+                              alt="profile"
+                              src={
+                                 currentUser.photoURL
+                                    ? currentUser.photoURL
+                                    : require("../Images/defaultProfile.png")
+                              }
+                           />
                         ) : (
                            <Profile
                               src={require("../Images/defaultProfile.png")}

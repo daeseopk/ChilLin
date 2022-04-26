@@ -4,6 +4,16 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
 
+const StyledRating = styled(Rating)`
+   .MuiRating-decimal {
+      font-size: ${(prop) => prop.fontSize};
+      color: white;
+   }
+   .MuiRating-iconEmpty {
+      color: grey;
+   }
+`;
+
 export default function BasicRating({
    rating,
    title,
@@ -14,20 +24,13 @@ export default function BasicRating({
    setRating,
 }) {
    const [value, setValue] = React.useState(0);
-   const StyledRating = styled(Rating)`
-      .MuiRating-decimal {
-         font-size: ${fontSize};
-         color: white;
-      }
-      .MuiRating-iconEmpty {
-         color: grey;
-      }
-   `;
+
    rating = rating / 2;
    return (
       <Stack spacing={1}>
          <Typography component="legend">{title}</Typography>
          <StyledRating
+            fontSize={fontSize}
             style={{
                margin: margin,
                marginBottom: marginBottom,

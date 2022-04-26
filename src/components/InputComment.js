@@ -15,15 +15,12 @@ export default function InputComment({ currentUser, loading, id }) {
          onSubmit();
       }
    };
-   const onSubmit = async (e) => {
+   const onSubmit = async () => {
       var now = new Date();
-      var date = [
-         now.getFullYear(),
-         now.getMonth(),
-         now.getDate(),
-         now.getHours(),
-         now.getMinutes(),
-      ];
+      var date = `${now.getFullYear()}.${now.getMonth()}.${now.getDate()} / ${now.getHours()}:${now.getMinutes()}`;
+      var useSort_date = `${now.getFullYear()}.${
+         now.getMonth() + 1
+      }.${now.getDate()} / ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
       const Put = async () => {
          const alreadyComments = await axios.get(
             `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`
@@ -41,17 +38,17 @@ export default function InputComment({ currentUser, loading, id }) {
                like_count: 0,
                unlike_count: 0,
                date: date,
+               useSort_date: useSort_date,
                user: currentUser,
             }
          );
-         window.scrollTo(0, 1000 + CommentId * 400);
       };
       await Put();
       setTextarea("");
       setRating(0);
       alert("completed writing a comment!");
    };
-   // console.log(currentUser.uid);
+   var now = new Date();
 
    return (
       <div className={styles.InputCommentContainer}>
@@ -61,7 +58,11 @@ export default function InputComment({ currentUser, loading, id }) {
                <div className={styles.inputContainer}>
                   <img
                      className={styles.profile}
-                     src={currentUser.photoURL}
+                     src={
+                        currentUser.photoURL
+                           ? currentUser.photoURL
+                           : require("../Images/defaultProfile.png")
+                     }
                      alt="profile"
                   />
                   <div className={styles.inputWrapper}>

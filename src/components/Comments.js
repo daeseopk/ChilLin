@@ -5,9 +5,9 @@ import firebase from "../firebase";
 import ShowComments from "./ShowComments";
 
 export default function Comments({
+   Toggle,
    visibility,
-   opacity_comments,
-   setOpacity_comments,
+   setVisibility,
    id,
    setToggle,
 }) {
@@ -15,10 +15,10 @@ export default function Comments({
    const [currentUser, setCurrentUser] = useState();
 
    useEffect(() => {
-      if (visibility === "COMMENTS") {
-         setOpacity_comments(1);
-      } else setOpacity_comments(0);
-   }, [visibility]);
+      if (Toggle === "COMMENTS") {
+         setVisibility(1);
+      } else setVisibility(0);
+   }, [Toggle]);
 
    useEffect(() => {
       const getUserInfo = async () => {
@@ -34,7 +34,8 @@ export default function Comments({
       <div
          className={styles.CommentsContainer}
          style={{
-            opacity: opacity_comments,
+            opacity: visibility,
+            zIndex: visibility,
          }}>
          <InputComment
             currentUser={currentUser}
@@ -42,7 +43,7 @@ export default function Comments({
             id={id}
             setToggle={setToggle}
          />
-         <ShowComments id={id} />
+         <ShowComments id={id} currentUser={currentUser} />
       </div>
    );
 }

@@ -7,7 +7,7 @@
    transform: translate(-50%, 0);
    width: 69%;
    height: 1700px;
-   z-index: 3;
+   /* z-index: 1; */
    margin-top: 100px;
 
    transition: all ease 0.6s;
@@ -107,19 +107,12 @@
    width: 75%;
    height: 250px;
 }
-
-.DropdownBtn_Down {
-   cursor: pointer;
-   margin-left: 10px;
-   width: 20px;
-   height: 17px;
-}
-.DropdownBtn_Up {
-   cursor: pointer;
-   margin-left: 10px;
-   width: 20px;
-   height: 17px;
-   transform: scaleY(-1);
+.SortBy {
+   margin-top: 30px;
+   margin-left: 5%;
+   position: relative;
+   width: fit-content;
+   height: 20px;
 }
 .CommentsUl {
    transition: 0.6s all ease;
@@ -178,7 +171,7 @@
 }
 .time {
    position: absolute;
-   transform: translate(150px, -5px);
+   transform: translate(240px, -5px);
    font-size: 16px;
    font-weight: 300;
    font-stretch: normal;
@@ -187,4 +180,10 @@
    letter-spacing: -0.9px;
    text-align: left;
    color: #b4b2b2;
+}
+.trash {
+   width: 30px;
+   height: 30px;
+   filter: invert(100%);
+   cursor: pointer;
 }

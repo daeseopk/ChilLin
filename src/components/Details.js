@@ -5,21 +5,16 @@ import axios from "axios";
 import Scroller from "../components/Scroller";
 import Trailer from "../components/Trailer";
 
-export default function Details({
-   visibility,
-   id,
-   opacity_details,
-   setOpacity_details,
-}) {
+export default function Details({ Toggle, id, visibility, setVisibility }) {
    const [people, setPeople] = useState();
    const [loading, setLoading] = useState(true);
    const [ScrollerXOffset, setScrollerXOffset] = useState(0);
 
    useEffect(() => {
-      if (visibility === "DETAILS") {
-         setOpacity_details(1);
-      } else setOpacity_details(0);
-   }, [visibility]);
+      if (Toggle === "DETAILS") {
+         setVisibility(1);
+      } else setVisibility(0);
+   }, [Toggle]);
 
    useEffect(() => {
       const getPeople = async () => {
@@ -37,7 +32,7 @@ export default function Details({
    }, []);
    return (
       <div
-         style={{ opacity: opacity_details }}
+         style={{ opacity: visibility, zIndex: visibility }}
          className={styles.DetailContainer}>
          {loading ? null : (
             <div className={styles.DetailGridTemplate}>
@@ -47,7 +42,7 @@ export default function Details({
                      setScrollerXOffset={setScrollerXOffset}
                      people={people}
                   />
-                  <Trailer id={id} play_trigger={opacity_details} />
+                  <Trailer id={id} play_trigger={visibility} />
                </div>
                <div className={styles.DetailRight}>right</div>
             </div>
