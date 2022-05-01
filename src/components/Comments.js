@@ -37,12 +37,15 @@ export default function Comments({
             opacity: visibility,
             zIndex: visibility,
          }}>
-         <InputComment
-            currentUser={currentUser}
-            loading={loading}
-            id={id}
-            setToggle={setToggle}
-         />
+         {currentUser ? (
+            <InputComment
+               currentUser={currentUser}
+               loading={loading}
+               id={id}
+               setToggle={setToggle}
+            />
+         ) : null}
+
          <ShowComments id={id} currentUser={currentUser} />
       </div>
    );

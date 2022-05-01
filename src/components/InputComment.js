@@ -17,7 +17,9 @@ export default function InputComment({ currentUser, loading, id }) {
    };
    const onSubmit = async () => {
       var now = new Date();
-      var date = `${now.getFullYear()}.${now.getMonth()}.${now.getDate()} / ${now.getHours()}:${now.getMinutes()}`;
+      var date = `${now.getFullYear()}.${
+         now.getMonth() + 1
+      }.${now.getDate()} / ${now.getHours()}:${now.getMinutes()}`;
       var useSort_date = `${now.getFullYear()}.${
          now.getMonth() + 1
       }.${now.getDate()} / ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
@@ -33,10 +35,10 @@ export default function InputComment({ currentUser, loading, id }) {
          await axios.put(
             `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}/${CommentId}.json`,
             {
+               id: CommentId,
                comment: textarea,
                rating: rating * 2,
-               like_count: 0,
-               unlike_count: 0,
+               like_user: [""],
                date: date,
                useSort_date: useSort_date,
                user: currentUser,
@@ -48,8 +50,6 @@ export default function InputComment({ currentUser, loading, id }) {
       setRating(0);
       alert("completed writing a comment!");
    };
-   var now = new Date();
-
    return (
       <div className={styles.InputCommentContainer}>
          {!loading && currentUser ? (

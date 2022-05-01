@@ -11,30 +11,41 @@ export default function ShowComments({ id, currentUser }) {
    const [Sort, setSort] = useState();
 
    useEffect(() => {
-      if (Sort === "Recent") {
+      if (Sort === "Recent" || Sort === "Like") {
+         var useSort_data = [];
+         var Comments_sort = [];
          const getComments_sort = async () => {
-            var useSort_date = [];
-            var Comments_sort = [];
             try {
                const result = await axios.get(
                   `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`
                );
-               result.data.map((comment, index) => {
-                  useSort_date.push({
-                     date: comment.useSort_date,
-                     index: index,
+               if (Sort === "Recent") {
+                  result.data.map((comment, index) => {
+                     useSort_data.push({
+                        date: comment.useSort_date,
+                        index: index,
+                     });
                   });
-               });
-               useSort_date.sort((a, b) => new Date(b.date) - new Date(a.date)); // 최신순 정렬
-               useSort_date.map((data) => {
-                  // 정렬된 데이터를 map으로 돌면서 원본 데이터와 동일한 index값을 가질 때(정렬한 데이터와 같은 comment일 때) Comments_sort에 push
+                  useSort_data.sort(
+                     (a, b) => new Date(b.date) - new Date(a.date)
+                  );
+               } else if (Sort === "Like") {
+                  result.data.map((comment, index) => {
+                     useSort_data.push({
+                        like_count: comment.like_user.length,
+                        index: index,
+                     });
+                  });
+                  useSort_data.sort((a, b) => b.like_count - a.like_count);
+               }
+               useSort_data.map((data) => {
                   result.data.map((result_data, index) => {
                      if (data.index === index) {
                         Comments_sort.push(result_data);
                      }
                   });
                });
-               setComments(Comments_sort); //최신순으로 정렬 완료된 Comment들 세팅
+               setComments(Comments_sort);
             } catch (error) {
                console.log(error);
             }
@@ -60,14 +71,32 @@ export default function ShowComments({ id, currentUser }) {
       //TODO : 원본 데이터 사용하는 것 수정, 댓글 모두 삭제 시 에러 수정
       if (window.confirm("Are you sure delete this comment?")) {
          var length = Comments.length;
-         for (let i = parseInt(e.target.alt); i < length; i++) {
+         for (let i = parseInt(e.target.id); i < length; i++) {
             Comments[i] = Comments[i + 1];
          }
          var Comments_ = Comments.filter(
             (Comments_) => Comments_ !== undefined
          );
-
          axios.put(
+            `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`,
+            Comments_
+         );
+      }
+   };
+   const onClick_Like = async (e) => {
+      var Comments_ = { ...Comments };
+      var id_ = e.target.id;
+      if (!Comments_[id_].like_user.includes(currentUser.uid)) {
+         Comments_[id_].like_user.push(currentUser.uid);
+         await axios.put(
+            `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`,
+            Comments_
+         );
+      } else {
+         Comments_[id_].like_user = Comments_[id_].like_user.filter(
+            (data) => data !== currentUser.uid
+         );
+         await axios.put(
             `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`,
             Comments_
          );
@@ -75,7 +104,7 @@ export default function ShowComments({ id, currentUser }) {
    };
    return (
       <>
-         {!loading && Comments && currentUser ? (
+         {!loading && Comments ? (
             <div className={styles.ShowCommentsContainer}>
                <div className={styles.SortBy}>
                   <SortBy Sort={Sort} setSort={setSort} />
@@ -110,15 +139,46 @@ export default function ShowComments({ id, currentUser }) {
                                  </p>
                                  <hr className={styles.commentLine} />
                                  <hr className={styles.commentLineLong} />
+                                 <div className={styles.LikeWrapper}>
+                                    <span className={styles.LikeText}>
+                                       Was this commnet useful to you?
+                                    </span>
+                                    {currentUser ? (
+                                       <div
+                                          onClick={onClick_Like}
+                                          className={styles.LikeBtnWrapper}>
+                                          <img
+                                             id={index}
+                                             className={styles.LikeBtn}
+                                             src={
+                                                comment.like_user.includes(
+                                                   currentUser.uid
+                                                )
+                                                   ? require("../Images/LikeBtn_Like.png")
+                                                   : require("../Images/LikeBtn_default.png")
+                                             }
+                                             alt="LikeBtn"
+                                          />
+                                          <span
+                                             id={index}
+                                             className={styles.LikeBtn_default}>
+                                             {comment.like_user.length - 1}
+                                          </span>
+                                       </div>
+                                    ) : null}
+                                 </div>
                               </div>
                               <p className={styles.time}>{comment.date}</p>
-                              {currentUser.uid === comment.user.uid ? (
-                                 <img
-                                    onClick={onClick_trash}
-                                    className={styles.trash}
-                                    src={require("../Images/trashcan.png")}
-                                    alt={index}
-                                 />
+                              {currentUser ? (
+                                 currentUser.uid === comment.user.uid ? (
+                                    <img
+                                       onClick={onClick_trash}
+                                       className={styles.trash}
+                                       src={require("../Images/trashcan.png")}
+                                       id={index}
+                                       alt="trash"
+                                    />
+                                 ) : null
                               ) : null}
                            </div>
                         </li>

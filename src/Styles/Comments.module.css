@@ -169,6 +169,34 @@
    width: 100%;
    background-color: #757575;
 }
+.LikeWrapper {
+   margin-top: 30px;
+   display: flex;
+   /* align-items: center; */
+}
+.LikeText {
+   font-family: NotoSansKannada;
+   font-size: 18px;
+   font-weight: 300;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: -0.9px;
+   text-align: left;
+   color: #fff;
+}
+.LikeBtnWrapper {
+   display: flex;
+   width: 20px;
+   height: 20px;
+   margin-left: 20px;
+   cursor: pointer;
+}
+.LikeBtn {
+   width: inherit;
+   height: inherit;
+   margin-right: 10px;
+}
 .time {
    position: absolute;
    transform: translate(240px, -5px);
