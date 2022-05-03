@@ -187,7 +187,7 @@ function SignUp() {
                <div className={styles.account}>
                   <p>
                      You have an account?
-                     <a href="/Login" style={{ color: "#7b80f2" }}>
+                     <a href="/SignUp" style={{ color: "#7b80f2" }}>
                         {" "}
                         Sign in!
                      </a>

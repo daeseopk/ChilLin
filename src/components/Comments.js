@@ -10,6 +10,8 @@ export default function Comments({
    setVisibility,
    id,
    setToggle,
+   isOpen,
+   setIsOpen,
 }) {
    const [loading, setLoading] = useState(true);
    const [currentUser, setCurrentUser] = useState();
@@ -45,8 +47,12 @@ export default function Comments({
                setToggle={setToggle}
             />
          ) : null}
-
-         <ShowComments id={id} currentUser={currentUser} />
+         <ShowComments
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            id={id}
+            currentUser={currentUser}
+         />
       </div>
    );
 }

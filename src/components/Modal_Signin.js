@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
+import styles from "../Styles/Modal.module.css";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import styles from "../Styles/SignIn.module.css";
 import { FcGoogle } from "react-icons/fc";
 import { auth, firebaseInstance } from "../firebase";
 import firebase from "../firebase";
 
-function SignIn() {
+export default function Modal({ isOpen, setIsOpen, width, height }) {
    const [warnMsg, setWarnMsg] = useState([]);
    const [isChecked, setIsChecked] = useState(false);
    const [emailvalue, setEmailValue] = useState("");
@@ -39,7 +39,9 @@ function SignIn() {
    const onChange1 = (e) => {
       setEmailValue(e.target.value);
    };
-
+   const onClick_quit = () => {
+      setIsOpen(false);
+   };
    // TODO : warning message 글씨 크기 키우기 전체적으로 폰트 조정
    const onSubmit = async (d) => {
       if (d.email) {
@@ -74,21 +76,31 @@ function SignIn() {
       } else setWarnMsg(["Please enter your ", "e-mail"]);
    };
    return (
-      <div className={styles.SignInContainer}>
-         <div className={styles.Logo}>
-            <Link to="/Home">
-               <div className={styles.Logo}>
+      <div
+         style={{
+            opacity: isOpen ? 1 : 0,
+            zIndex: isOpen ? 99 : 0,
+            width: width,
+            height: height,
+         }}
+         className={styles.ModalContainer}>
+         <div className={styles.ModalTop}>
+            <div className={styles.Logo}>
+               <Link to="/Home">
                   <img
                      style={{
-                        width: "200px",
-                        height: "70px",
+                        width: "150px",
+                        height: "50px",
                      }}
                      className="Logo"
                      src={require("../Images/Logo.png")}
                      alt="logo"
                   />
-               </div>
-            </Link>
+               </Link>
+            </div>
+            <div className={styles.QuitBtn}>
+               <span onClick={onClick_quit}>X</span>
+            </div>
          </div>
          <div className={styles.SignInBox}>
             <div className={styles.items}>
@@ -196,5 +208,3 @@ function SignIn() {
       </div>
    );
 }
-
-export default SignIn;

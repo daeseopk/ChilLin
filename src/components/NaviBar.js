@@ -19,6 +19,7 @@ const Profile = styled.img`
    border-radius: 50px;
 `;
 function NaviBar() {
+   const [ScrollY, setScrollY] = useState();
    const [menuVisible, setMenuVisible] = useState(false);
    const [currentUser, setCurrentUser] = useState();
    const [loading, setLoading] = useState(true);
@@ -33,6 +34,20 @@ function NaviBar() {
       setLoading(false);
    }, []);
 
+   useEffect(() => {}, [ScrollY]);
+
+   useEffect(() => {
+      const watch = () => {
+         window.addEventListener("scroll", handleFollow);
+      };
+      watch();
+      return () => {
+         window.removeEventListener("scroll", handleFollow);
+      };
+   }, []);
+   const handleFollow = () => {
+      setScrollY(window.pageYOffset);
+   };
    const logout = async () => {
       await auth.signOut();
    };
@@ -48,7 +63,11 @@ function NaviBar() {
    const loginStatus = window.sessionStorage.getItem("Login");
 
    return (
-      <div className="NavBarContainer">
+      <div
+         style={{
+            top: ScrollY >= 1 ? "-70px" : "0px",
+         }}
+         className="NavBarContainer">
          {!loading ? (
             <div className="navbar">
                <SideMenu

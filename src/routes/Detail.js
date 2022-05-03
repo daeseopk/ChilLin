@@ -8,6 +8,7 @@ import DetailButton from "../components/DetailButton";
 import BackgroundImage from "../components/BackgroundImage";
 import Details from "../components/Details";
 import Comments from "../components/Comments";
+import ModalSignin from "../components/Modal_Signin";
 
 function Detail() {
    const [movie, setMovie] = useState();
@@ -18,6 +19,7 @@ function Detail() {
    const [opacity_details, setOpacity_details] = useState(0);
    const [opacity_comments, setOpacity_comments] = useState(0);
    const [Toggle, setToggle] = useState(null);
+   const [isOpen, setIsOpen] = useState(false);
    const { id } = useParams();
    const IMAGE_URL = "https://image.tmdb.org/t/p/original";
    const handleFollow = () => {
@@ -73,6 +75,12 @@ function Detail() {
             <h1>loading...</h1>
          ) : (
             <div className={styles.Container}>
+               <ModalSignin
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  width="430px"
+                  height="600px"
+               />
                <BackgroundImage
                   backgroundImg={IMAGE_URL + movie.backdrop_path}
                   opacity={opacity}
@@ -106,6 +114,8 @@ function Detail() {
                      setVisibility={setOpacity_comments}
                      id={movie.id}
                      setToggle={setToggle}
+                     isOpen={isOpen}
+                     setIsOpen={setIsOpen}
                   />
                </div>
             </div>
