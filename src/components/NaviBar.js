@@ -8,6 +8,7 @@ import SideMenu from "./SideMenu.js";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import firebase from "../firebase";
+import SearchBar from "./SearchBar";
 
 const Profile = styled.img`
    position: absolute;
@@ -99,6 +100,12 @@ function NaviBar() {
                )}`}</p>
                {loginStatus === "false" || loginStatus === null ? (
                   <div className="ItemContainer">
+                     <SearchBar width="200px" />
+                     {/* TODO : 서치바 수정
+                        돋보기 클릭 시 텍스트필드 보이기
+                        다른 영역 클릭 시 텍스트필드 없애기
+                        위치 수정
+                     */}
                      <Link
                         to="/SignIn"
                         className="naviBtn"
@@ -119,6 +126,7 @@ function NaviBar() {
                ) : (
                   <div className="ItemContainer">
                      <div>
+                        <SearchBar width="200px" />
                         <button
                            onClick={onClick}
                            style={{

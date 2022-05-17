@@ -16,7 +16,9 @@ export default function Modal({ isOpen, setIsOpen, width, height }) {
    const onGoggleClick = async () => {
       let provider = new firebaseInstance.auth.GoogleAuthProvider();
       const data = await auth.signInWithPopup(provider);
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      await firebase
+         .auth()
+         .setPersistence(firebase.auth.Auth.Persistence.SESSION);
       window.location.replace("/Home");
       if (data.additionalUserInfo) {
          window.sessionStorage.setItem("Login", true);

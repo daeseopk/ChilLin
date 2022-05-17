@@ -37,8 +37,12 @@ export default function InputComment({ currentUser, loading, id }) {
             {
                id: CommentId,
                comment: textarea,
-               rating: rating * 2,
-               like_user: [""],
+               rating: rating,
+               like_user: {
+                  uid: {
+                     value: "value",
+                  },
+               },
                date: date,
                useSort_date: useSort_date,
                user: currentUser,
@@ -84,7 +88,7 @@ export default function InputComment({ currentUser, loading, id }) {
                   <div className={styles.ratingWrapper}>
                      <Rating
                         readOnly={false}
-                        rating={rating * 2}
+                        rating={rating}
                         fontSize="2rem"
                         setRating={setRating}
                      />

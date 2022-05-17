@@ -1,15 +1,17 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styles from "../Styles/Comments.module.css";
 import Rating from "../components/Rating";
 import SortBy from "../components/Sort";
+import ShowLike from "../components/ShowLike";
 
 export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
    const [Comments, setComments] = useState();
    const [loading, setLoading] = useState(true);
    const [page, setPage] = useState(1);
    const [Sort, setSort] = useState();
+   const Showlike = useRef([]);
 
    useEffect(() => {
       if (Sort === "Recent" || Sort === "Like" || Sort === "Rating") {
@@ -33,7 +35,7 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
                } else if (Sort === "Like") {
                   result.data.map((comment, index) =>
                      useSort_data.push({
-                        like_count: comment.like_user.length,
+                        like_count: Object.keys(comment.like_user).length - 1,
                         index: index,
                      })
                   );
@@ -97,16 +99,19 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
       if (currentUser) {
          var Comments_ = { ...Comments };
          var id_ = e.target.id;
-         if (!Comments_[id_].like_user.includes(currentUser.uid)) {
-            Comments_[id_].like_user.push(currentUser.uid);
+         var user_object = {};
+         user_object[`${currentUser.uid}`] = currentUser;
+         if (!Comments_[id_].like_user.hasOwnProperty(`${currentUser.uid}`)) {
+            Comments_[id_].like_user = Object.assign(
+               Comments_[id_].like_user,
+               user_object
+            );
             await axios.put(
                `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`,
                Comments_
             );
          } else {
-            Comments_[id_].like_user = Comments_[id_].like_user.filter(
-               (data) => data !== currentUser.uid
-            );
+            delete Comments_[id_].like_user[currentUser.uid];
             await axios.put(
                `https://movieweb-2b841-default-rtdb.firebaseio.com/Comments/${id}.json`,
                Comments_
@@ -137,6 +142,13 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
       }
       return dot;
    };
+   const like_onMouseEnter = (e) => {
+      Showlike.current[e.target.id].style = "opacity:1; z-index:1;";
+   };
+   const like_onMouseOut = (e) => {
+      Showlike.current[e.target.id].style = "opacity:0; z-index:-1;";
+   };
+
    return (
       <>
          {!loading && Comments ? (
@@ -183,14 +195,14 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
                                        </span>
                                        {currentUser ? (
                                           <div
-                                             onClick={onClick_Like}
                                              className={styles.LikeBtnWrapper}>
                                              <img
+                                                onClick={onClick_Like}
                                                 id={index}
                                                 className={styles.LikeBtn}
                                                 src={
-                                                   comment.like_user.includes(
-                                                      currentUser.uid
+                                                   comment.like_user.hasOwnProperty(
+                                                      `${currentUser.uid}`
                                                    )
                                                       ? require("../Images/LikeBtn_Like.png")
                                                       : require("../Images/LikeBtn_default.png")
@@ -198,26 +210,38 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
                                                 alt="LikeBtn"
                                              />
                                              <span
+                                                onMouseEnter={like_onMouseEnter}
+                                                onMouseOut={like_onMouseOut}
                                                 id={index}
                                                 className={styles.LikeCount}>
-                                                {comment.like_user.length - 1}
+                                                {Object.keys(comment.like_user)
+                                                   .length - 1}
                                              </span>
+                                             {currentUser.uid ===
+                                             comment.user.uid ? (
+                                                <ShowLike
+                                                   Showlike={Showlike}
+                                                   index={index}
+                                                   comment_user={
+                                                      comment.like_user
+                                                   }
+                                                />
+                                             ) : null}
                                           </div>
                                        ) : (
                                           <div
-                                             onClick={onClick_Like}
                                              className={styles.LikeBtnWrapper}>
                                              <img
+                                                onClick={onClick_Like}
                                                 className={styles.LikeBtn}
                                                 src={require("../Images/LikeBtn_default.png")}
                                                 alt="LikeBtn"
                                              />
                                              <span
                                                 id={index}
-                                                className={
-                                                   styles.LikeBtn_default
-                                                }>
-                                                {comment.like_user.length - 1}
+                                                className={styles.LikeCount}>
+                                                {Object.keys(comment.like_user)
+                                                   .length - 1}
                                              </span>
                                           </div>
                                        )}

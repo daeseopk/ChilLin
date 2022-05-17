@@ -35,7 +35,7 @@ function GridTemplate({ movies }) {
                                 />
                              </Link>
                              <Rating
-                                rating={movie.vote_average}
+                                rating={movie.vote_average / 2}
                                 title={movie.title}
                                 margin={"0 auto"}
                                 marginBottom={"40px"}

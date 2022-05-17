@@ -94,7 +94,7 @@ function Detail() {
                   release_date={movie.release_date}
                   genres={movie.genres}
                   runtime={movie.runtime}
-                  rating={movie.vote_average}
+                  rating={movie.vote_average / 2}
                />
                <DetailButton
                   Toggle={Toggle}

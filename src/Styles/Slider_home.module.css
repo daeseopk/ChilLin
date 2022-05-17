@@ -1,0 +1,81 @@
+.Slider_Container {
+   width: 1000px;
+   height: 40%;
+   margin: 0 auto;
+   margin-top: 100px;
+   transition: 0.5s all ease;
+}
+.Slider_poster_Container {
+   position: relative;
+   display: flex;
+   width: 100%;
+   height: 100%;
+   margin: 0 auto;
+}
+.Summary_Container {
+   display: flex;
+   direction: rtl;
+   width: 100%;
+   height: 100%;
+}
+.Summary_Wrapper {
+   display: block;
+   text-align: left;
+   width: 50%;
+   height: 100%;
+   border: 2px solid red;
+}
+.Summary_Title {
+   color: white;
+   font-size: 30px;
+   font-weight: 900;
+   margin-left: 40px;
+}
+.leftArrow,
+.rightArrow {
+   cursor: pointer;
+   position: absolute;
+   transition: 0.3s ease all;
+   width: 70px;
+   height: 70px;
+   top: 40%;
+   opacity: 0.6;
+}
+:hover {
+   opacity: 1;
+}
+.leftArrow {
+   left: -200px;
+   transform: scaleX(-1);
+}
+.rightArrow {
+   right: -200px;
+}
+@media screen and (max-width: 1200px) {
+   .Slider_Container {
+      width: 800px;
+      height: 32%;
+   }
+   .leftArrow {
+      left: -90px;
+      width: 60px;
+      height: 60px;
+   }
+   .rightArrow {
+      right: -90px;
+      width: 60px;
+      height: 60px;
+   }
+}
+@media screen and (max-width: 800px) {
+   .Slider_Container {
+      width: 600px;
+      height: 25%;
+   }
+   .leftArrow {
+      left: -40px;
+   }
+   .rightArrow {
+      right: -40px;
+   }
+}

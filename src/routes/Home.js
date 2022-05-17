@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "../Styles/Home.module.css";
 import NaviBar from "../components/NaviBar.js";
-import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import Loading from "../components/Loading";
+import Slider_home from "../components/Slider_home";
 
 function Home() {
    const [loading, setLoading] = useState(true);
@@ -25,8 +25,8 @@ function Home() {
                <div className={styles.NavbarContainer}>
                   <NaviBar />
                </div>
-               <div className="searchBarContainer">
-                  <SearchBar width="500px" />
+               <div className={styles.bodyWrapper}>
+                  <Slider_home />
                </div>
             </div>
          )}

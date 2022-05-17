@@ -12,6 +12,9 @@ const StyledRating = styled(Rating)`
    .MuiRating-iconEmpty {
       color: grey;
    }
+   .css-dqr9h-MuiRating-label {
+      color: white;
+   }
 `;
 
 export default function BasicRating({
@@ -25,7 +28,6 @@ export default function BasicRating({
 }) {
    const [value, setValue] = React.useState(0);
 
-   rating = rating / 2;
    return (
       <Stack spacing={1}>
          <Typography component="legend">{title}</Typography>
@@ -40,6 +42,7 @@ export default function BasicRating({
             onChange={(event, newValue) => {
                setValue(newValue);
                setRating(newValue);
+               console.log(newValue);
             }}
             precision={0.5}
             readOnly={readOnly}
