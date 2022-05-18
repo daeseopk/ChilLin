@@ -40,7 +40,7 @@ function SearchBar({ width, value }) {
          />
          <button
             style={{
-               backgroundColor: "#161616",
+               backgroundColor: "inherit",
                cursor: "pointer",
                border: "none",
                width: "35px",

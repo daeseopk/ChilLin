@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "../Styles/Slider_home.module.css";
@@ -17,13 +17,12 @@ export default function Slider_home() {
       "35%,10%",
       "50%,30%",
    ]);
-   // const [innerWidth, setInnerWith] = useState(window.innerWidth);
-
+   const summary = useRef([]);
+   const card = useRef([]);
    useEffect(() => {
       const getMovie = async () => {
          var sequence_ = [];
          var movie_ = [];
-         var genre_;
          try {
             const result = await axios.get(
                `https://api.themoviedb.org/3/movie/now_playing?api_key=83f61a3baf6174f8aeb8a593cc236386&language=en-US&page=1`
@@ -76,7 +75,45 @@ export default function Slider_home() {
       }
       setSequence(sequence_);
    };
-
+   const onMouseEnter = (e) => {
+      if (sequence[e.target.id] === 2) {
+         summary.current[e.target.id].style =
+            "opacity:1; background-color:rgba(0,0,0,0.5);";
+      }
+   };
+   const onMouseOut = (e) => {
+      if (sequence[e.target.id] === 2) {
+         summary.current[e.target.id].style = "opacity:0;";
+      }
+   };
+   const onClick_Card = (seq, e) => {
+      var sequence_ = Array.from(sequence);
+      if (seq < 2) {
+         for (let j = 0; j < 2 - seq; j++) {
+            for (let i = 0; i < sequence_.length; i++) {
+               if (sequence_[i] === 4) sequence_[i] = -1;
+               sequence_[i] = sequence_[i] + 1;
+            }
+            setSequence(sequence_);
+         }
+      } else {
+         for (let j = 0; j < seq - 2; j++) {
+            for (let i = 0; i < sequence_.length; i++) {
+               if (sequence_[i] === 0) sequence_[i] = sequence_.length;
+               sequence_[i] = sequence_[i] - 1;
+            }
+            setSequence(sequence_);
+         }
+      }
+   };
+   const onClick_viewmore = (index, movie, e) => {
+      summary.current[index].style = "opacity:0;";
+      card.current[index].style =
+         "transition: 1.5s all ease; width:100vw; height:100vh; transform:translate(-14.5%,-16.5%);";
+      setTimeout(function () {
+         window.location.replace(`/Detail/id=${movie.id}`);
+      }, 1600);
+   };
    return (
       <>
          {!loading ? (
@@ -84,52 +121,91 @@ export default function Slider_home() {
                <div className={styles.Slider_poster_Container}>
                   {movie
                      ? movie.map((movie, index) => {
-                          //   console.log(movie.genre_ids);
                           return (
-                             <Link to={`/Detail/id=${movie.id}`}>
-                                <Card
-                                   filter={
-                                      sequence[index] === 2
-                                         ? null
-                                         : "filter: blur(8px);"
+                             <Card
+                                ref={(elem) => (card.current[index] = elem)}
+                                seq={sequence[index]}
+                                onMouseEnter={onMouseEnter}
+                                onMouseLeave={onMouseOut}
+                                filter={
+                                   sequence[index] === 2
+                                      ? null
+                                      : "filter: blur(8px);"
+                                }
+                                webkit_filter={
+                                   sequence[index] === 2
+                                      ? null
+                                      : "-webkit-filter: blur(5px);"
+                                }
+                                z_index={
+                                   sequence[index] === 2
+                                      ? "3"
+                                      : sequence[index] === 1 ||
+                                        sequence[index] === 3
+                                      ? "2"
+                                      : "1"
+                                }
+                                height={
+                                   sequence[index] === 2
+                                      ? "100%"
+                                      : sequence[index] === 1 ||
+                                        sequence[index] === 3
+                                      ? "80%"
+                                      : "60%"
+                                }
+                                backgroundImg={movie.backdrop_path}
+                                transform={transform[sequence[index]]}>
+                                <div
+                                   onClick={(e) => {
+                                      onClick_Card(sequence[index], e);
+                                   }}
+                                   id={index}
+                                   ref={(elem) =>
+                                      (summary.current[index] = elem)
                                    }
-                                   webkit_filter={
-                                      sequence[index] === 2
-                                         ? null
-                                         : "-webkit-filter: blur(5px);"
-                                   }
-                                   z_index={
-                                      sequence[index] === 2
-                                         ? "3"
-                                         : sequence[index] === 1 ||
-                                           sequence[index] === 3
-                                         ? "2"
-                                         : "1"
-                                   }
-                                   height={
-                                      sequence[index] === 2
-                                         ? "100%"
-                                         : sequence[index] === 1 ||
-                                           sequence[index] === 3
-                                         ? "80%"
-                                         : "60%"
-                                   }
-                                   backgroundImg={movie.backdrop_path}
-                                   transform={transform[sequence[index]]}
-                                   id={index}>
-                                   <div className={styles.Summary_Container}>
-                                      <div className={styles.Summary_Wrapper}>
-                                         <p className={styles.Summary_Title}>
-                                            {movie.title}
-                                            {/* TODO */}
-                                            {movie.genre_ids.map(
-                                               (genre_) => {}
-                                            )}
-                                         </p>
+                                   className={styles.Summary_Container}>
+                                   <div
+                                      id={index}
+                                      className={styles.Summary_Wrapper}>
+                                      <p
+                                         id={index}
+                                         className={styles.Summary_Title}>
+                                         {movie.title}
+                                      </p>
+                                      <div
+                                         className={
+                                            styles.Summary_genre_Wrapper
+                                         }>
+                                         {genre.map((genre) =>
+                                            movie.genre_ids.map((genre_) => {
+                                               if (genre.id === genre_)
+                                                  return (
+                                                     <span
+                                                        seq={sequence[index]}
+                                                        className={
+                                                           styles.Summary_genre
+                                                        }>
+                                                        {genre.name}
+                                                     </span>
+                                                  );
+                                            })
+                                         )}
                                       </div>
+                                      <p className={styles.Summary_overview}>
+                                         {movie.overview}
+                                      </p>
+                                      {/* view more 기능만 구현하였음 */}
+                                      <span
+                                         onClick={(e) => {
+                                            onClick_viewmore(index, movie, e);
+                                         }}
+                                         style={{ cursor: "pointer" }}
+                                         className={styles.Summary_viewmore}>
+                                         view more
+                                      </span>
                                    </div>
-                                </Card>
-                             </Link>
+                                </div>
+                             </Card>
                           );
                        })
                      : null}

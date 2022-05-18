@@ -3,6 +3,7 @@
    width: 100%;
    height: 2700px;
    background-color: #161616;
+   animation: fadein 1s ease;
 }
 .PosterContainer {
    display: flex;
@@ -146,5 +147,21 @@ p {
    }
    .bodyWrapper {
       margin-left: 45px;
+   }
+}
+@-webkit-keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+@keyframes fadein {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
    }
 }
