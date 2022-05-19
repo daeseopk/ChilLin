@@ -3,6 +3,7 @@ import Styles from "../Styles/DetailButton.module.css";
 
 export default function DetailButton({ Toggle, setToggle, moveTrigger }) {
    const onClick = (e) => {
+      console.log(e.target.value);
       if (e.target.id === "DetailButton_Details__YO6eg") setToggle("DETAILS");
       else setToggle("COMMENTS");
    };

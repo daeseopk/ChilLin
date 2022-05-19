@@ -63,7 +63,7 @@ export default function carousel({ recommend, IMAGE_URL }) {
                      style={{
                         display: "contents",
                      }}
-                     to={`/Detail:${rec.id}`}>
+                     to={`/Detail/id=${rec.id}`}>
                      <Image src={IMAGE_URL + rec.backdrop_path} />
                      <p style={{ color: "white", fontSize: "13px" }}>
                         {rec.title}

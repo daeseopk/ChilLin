@@ -3,7 +3,6 @@
    width: 100%;
    height: 2700px;
    background-color: #161616;
-   animation: fadein 1s ease;
 }
 .PosterContainer {
    display: flex;
@@ -13,6 +12,7 @@
    width: 68%;
    height: contents;
    z-index: 2;
+   animation: fadein 2s ease;
 }
 .bodyWrapper {
    display: block;

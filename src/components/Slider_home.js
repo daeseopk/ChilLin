@@ -1,14 +1,14 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "../Styles/Slider_home.module.css";
 import styled from "styled-components";
 
 export default function Slider_home() {
    const [movie, setMovie] = useState();
-   const [loading, setLoading] = useState();
+   const [loading, setLoading] = useState(true);
    const [genre, setGenre] = useState();
+   const [isEvent, setIsEvent] = useState(true); // 커스텀 HOVER이벤트 조건
    const [sequence, setSequence] = useState([0, 1, 2, 3, 4]);
    const [transform, setTranform] = useState([
       "-10%,30%",
@@ -19,6 +19,7 @@ export default function Slider_home() {
    ]);
    const summary = useRef([]);
    const card = useRef([]);
+   const slider_container = useRef();
    useEffect(() => {
       const getMovie = async () => {
          var sequence_ = [];
@@ -107,26 +108,43 @@ export default function Slider_home() {
       }
    };
    const onClick_viewmore = (index, movie, e) => {
-      summary.current[index].style = "opacity:0;";
+      // 나머지 4개 카드 제어하는 코드 //
+      for (let i = 0; i < sequence.length; i++) {
+         if (sequence[i] === sequence[index])
+            card.current[i].style =
+               "border-radius: 0px; box-shadow:none; transition:1.5s ease all;";
+         else {
+            card.current[i].style = "opacity:0; transition:none;";
+         }
+      }
+      // 가운데 카드 제어하는 코드 //
+      setIsEvent(false); //hover이벤트 중단
       card.current[index].style =
-         "transition: 1.5s all ease; width:100vw; height:100vh; transform:translate(-14.5%,-16.5%);";
+         "filter:brightness(65%); transition: 1.5s all ease;width:100vw; height:100vh; position:fixed; transform:translate(0,0); border-radius:0px;";
+      slider_container.current.style =
+         "transition:1.5s all ease; position:absolute; left:0; top:-60px;";
+      summary.current[index].style = "opacity:0;";
+
+      // 디테일 페이지 이동
       setTimeout(function () {
-         window.location.replace(`/Detail/id=${movie.id}`);
-      }, 1600);
+         window.location.href = `/Detail/id=${movie.id}`;
+      }, 1500);
    };
    return (
       <>
          {!loading ? (
             <div className={styles.Slider_Container}>
-               <div className={styles.Slider_poster_Container}>
+               <div
+                  ref={slider_container}
+                  className={styles.Slider_poster_Container}>
                   {movie
                      ? movie.map((movie, index) => {
                           return (
                              <Card
                                 ref={(elem) => (card.current[index] = elem)}
                                 seq={sequence[index]}
-                                onMouseEnter={onMouseEnter}
-                                onMouseLeave={onMouseOut}
+                                onMouseEnter={isEvent ? onMouseEnter : null} //isEvent가 true인 경우에만 이벤트 발생
+                                onMouseLeave={isEvent ? onMouseOut : null}
                                 filter={
                                    sequence[index] === 2
                                       ? null
@@ -147,11 +165,11 @@ export default function Slider_home() {
                                 }
                                 height={
                                    sequence[index] === 2
-                                      ? "100%"
+                                      ? "50%"
                                       : sequence[index] === 1 ||
                                         sequence[index] === 3
-                                      ? "80%"
-                                      : "60%"
+                                      ? "40%"
+                                      : "30%"
                                 }
                                 backgroundImg={movie.backdrop_path}
                                 transform={transform[sequence[index]]}>
@@ -188,6 +206,7 @@ export default function Slider_home() {
                                                         {genre.name}
                                                      </span>
                                                   );
+                                               else return null;
                                             })
                                          )}
                                       </div>
@@ -240,4 +259,6 @@ const Card = styled.div`
    ${(prop) => prop.webkit_filter}
    z-index: ${(prop) => prop.z_index};
    transition: 0.6s ease all;
+   border-radius: 15px;
+   box-shadow: 2px 2px 2px 2px rgba(30, 30, 30, 0.7);
 `;

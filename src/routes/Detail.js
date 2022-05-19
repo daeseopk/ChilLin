@@ -72,7 +72,7 @@ function Detail() {
    return (
       <div>
          {loading ? (
-            <h1>loading...</h1>
+            <div style={{width:"100vw", height:"100vh", backgroundColor:"#161616"}}></div>
          ) : (
             <div className={styles.Container}>
                <ModalSignin

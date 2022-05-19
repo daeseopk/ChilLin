@@ -1,5 +1,5 @@
 .container {
-   height: 100vh;
+   height: 1800px;
    width: 100%;
    display: block;
    justify-content: center;
@@ -7,7 +7,7 @@
 }
 .bodyContainer {
    width: 100%;
-   height: 100%;
+   height: 1740px;
    background-color: inherit;
    display: block;
    position: relative;
@@ -27,6 +27,7 @@
    width: 100%;
 }
 .bodyWrapper {
+   position: absolute;
    width: 100%;
    height: 100%;
 }
