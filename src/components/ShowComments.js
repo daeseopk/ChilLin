@@ -6,7 +6,13 @@ import Rating from "../components/Rating";
 import SortBy from "../components/Sort";
 import ShowLike from "../components/ShowLike";
 
-export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
+export default function ShowComments({
+   id,
+   currentUser,
+   isOpen,
+   setIsOpen,
+   email_ref,
+}) {
    const [Comments, setComments] = useState();
    const [loading, setLoading] = useState(true);
    const [page, setPage] = useState(1);
@@ -101,7 +107,7 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
          var id_ = e.target.id;
          var user_object = {};
          user_object[`${currentUser.uid}`] = currentUser;
-         if (!Comments_[id_].like_user.hasOwnProperty(`${currentUser.uid}`)) {
+         if (!Comments_[id_].like_user.hasOwnProperty(currentUser.uid)) {
             Comments_[id_].like_user = Object.assign(
                Comments_[id_].like_user,
                user_object
@@ -119,6 +125,7 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
          }
       } else {
          setIsOpen(true);
+         email_ref.current[0].focus();
       }
    };
    const onClick_dots = (e) => {
@@ -144,9 +151,6 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
    };
    const like_onMouseEnter = (e) => {
       Showlike.current[e.target.id].style = "opacity:1; z-index:1;";
-   };
-   const like_onMouseOut = (e) => {
-      Showlike.current[e.target.id].style = "opacity:0; z-index:-1;";
    };
 
    return (
@@ -211,7 +215,6 @@ export default function ShowComments({ id, currentUser, isOpen, setIsOpen }) {
                                              />
                                              <span
                                                 onMouseEnter={like_onMouseEnter}
-                                                onMouseOut={like_onMouseOut}
                                                 id={index}
                                                 className={styles.LikeCount}>
                                                 {Object.keys(comment.like_user)

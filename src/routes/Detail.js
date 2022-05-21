@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import NaviBar from "../components/NaviBar";
 import styles from "../Styles/Detail.module.css";
@@ -21,6 +21,7 @@ function Detail() {
    const [Toggle, setToggle] = useState(null);
    const [isOpen, setIsOpen] = useState(false);
    const { id } = useParams();
+   const email_ref = useRef();
    const IMAGE_URL = "https://image.tmdb.org/t/p/original";
    const handleFollow = () => {
       setScrollY(window.pageYOffset);
@@ -72,10 +73,16 @@ function Detail() {
    return (
       <div>
          {loading ? (
-            <div style={{width:"100vw", height:"100vh", backgroundColor:"#161616"}}></div>
+            <div
+               style={{
+                  width: "100vw",
+                  height: "100vh",
+                  backgroundColor: "#161616",
+               }}></div>
          ) : (
             <div className={styles.Container}>
                <ModalSignin
+                  email_ref={email_ref}
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                   width="430px"
@@ -109,6 +116,7 @@ function Detail() {
                      setVisibility={setOpacity_details}
                   />
                   <Comments
+                     email_ref={email_ref}
                      Toggle={Toggle}
                      visibility={opacity_comments}
                      setVisibility={setOpacity_comments}

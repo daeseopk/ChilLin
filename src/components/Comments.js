@@ -12,6 +12,7 @@ export default function Comments({
    setToggle,
    isOpen,
    setIsOpen,
+   email_ref,
 }) {
    const [loading, setLoading] = useState(true);
    const [currentUser, setCurrentUser] = useState();
@@ -39,15 +40,16 @@ export default function Comments({
             opacity: visibility,
             zIndex: visibility,
          }}>
-         {currentUser ? (
-            <InputComment
-               currentUser={currentUser}
-               loading={loading}
-               id={id}
-               setToggle={setToggle}
-            />
-         ) : null}
+         <InputComment
+            email_ref={email_ref}
+            currentUser={currentUser}
+            loading={loading}
+            id={id}
+            setToggle={setToggle}
+            setIsOpen={setIsOpen}
+         />
          <ShowComments
+            email_ref={email_ref}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             id={id}

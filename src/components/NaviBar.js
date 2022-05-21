@@ -13,7 +13,7 @@ import SearchBar from "./SearchBar";
 const Profile = styled.img`
    position: absolute;
    justify-content: flex-end;
-   right: 100px;
+   right: ${(prop) => prop.right};
    top: 20px;
    height: 30px;
    width: 30px;
@@ -66,6 +66,7 @@ function NaviBar() {
    return (
       <div
          style={{
+            textAlign: "left",
             top: ScrollY >= 1 ? "-70px" : "0px",
          }}
          className="NavBarContainer">
@@ -100,39 +101,29 @@ function NaviBar() {
                )}`}</p>
                {loginStatus === "false" || loginStatus === null ? (
                   <div className="ItemContainer">
-                     <SearchBar width="200px" />
-                     {/* TODO : 서치바 수정
-                        돋보기 클릭 시 텍스트필드 보이기
-                        다른 영역 클릭 시 텍스트필드 없애기
-                        위치 수정
-                     */}
-                     <Link
-                        to="/SignIn"
-                        className="naviBtn"
-                        style={{ right: "130px" }}>
-                        <Button style={{ fontSize: "15px" }} color="inherit">
-                           Sign In
-                        </Button>
-                     </Link>
-                     <Link
-                        to="/Help"
-                        className="naviBtn"
-                        style={{ right: "50px" }}>
-                        <Button style={{ fontSize: "15px" }} color="inherit">
-                           Help
-                        </Button>
-                     </Link>
+                     <div className="SearchBarWrapper">
+                        <SearchBar width="180px" />
+                     </div>
+                     <div className="SigninWrapper">
+                        <Link to="/SignIn" className="naviBtn">
+                           <Button style={{ fontSize: "15px" }} color="inherit">
+                              Sign In
+                           </Button>
+                        </Link>
+                     </div>
                   </div>
                ) : (
                   <div className="ItemContainer">
                      <div>
-                        <SearchBar width="200px" />
+                        <div className="SearchBarWrapper">
+                           <SearchBar width="180px" />
+                        </div>
                         <button
                            onClick={onClick}
                            style={{
                               position: "absolute",
                               justifyContent: "flex-end",
-                              right: "200px",
+                              right: "130px",
                               top: "20px",
                            }}>
                            logout
@@ -146,12 +137,13 @@ function NaviBar() {
                               position: "absolute",
                               justifyContent: "flex-end",
                               fontSize: "17px",
-                              right: "150px",
+                              right: "80px",
                               top: "22px",
                            }}
                         />
                         {currentUser ? (
                            <Profile
+                              right="30px"
                               alt="profile"
                               src={
                                  currentUser.photoURL
@@ -159,25 +151,7 @@ function NaviBar() {
                                     : require("../Images/defaultProfile.png")
                               }
                            />
-                        ) : (
-                           <Profile
-                              src={require("../Images/defaultProfile.png")}
-                              alt="unknown"
-                           />
-                        )}
-                        <button
-                           style={{
-                              position: "absolute",
-                              justifyContent: "flex-end",
-                              color: "white",
-                              backgroundColor: "inherit",
-                              fontSize: "17px",
-                              border: "none",
-                              right: "30px",
-                              top: "22px",
-                           }}>
-                           HELP
-                        </button>
+                        ) : null}
                      </div>
                   </div>
                )}

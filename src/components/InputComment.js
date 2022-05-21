@@ -3,7 +3,13 @@ import styles from "../Styles/Comments.module.css";
 import Rating from "../components/Rating";
 import axios from "axios";
 
-export default function InputComment({ currentUser, loading, id }) {
+export default function InputComment({
+   currentUser,
+   loading,
+   id,
+   setIsOpen,
+   email_ref,
+}) {
    const [textarea, setTextarea] = useState();
    const [rating, setRating] = useState();
 
@@ -54,18 +60,27 @@ export default function InputComment({ currentUser, loading, id }) {
       setRating(0);
       alert("completed writing a comment!");
    };
+   const onClick_input = () => {
+      if (currentUser) return null;
+      else {
+         setIsOpen(true);
+         email_ref.current[0].focus();
+      }
+   };
    return (
       <div className={styles.InputCommentContainer}>
-         {!loading && currentUser ? (
+         {!loading ? (
             <>
                <p className={styles.Title_Input}>COMMENTS</p>
                <div className={styles.inputContainer}>
                   <img
                      className={styles.profile}
                      src={
-                        currentUser.photoURL
+                        currentUser
                            ? currentUser.photoURL
-                           : require("../Images/defaultProfile.png")
+                              ? currentUser.photoURL
+                              : require("../Images/defaultProfile.png")
+                           : null
                      }
                      alt="profile"
                   />
@@ -73,6 +88,7 @@ export default function InputComment({ currentUser, loading, id }) {
                      <input
                         onKeyPress={onCheckEnter}
                         onChange={onChange}
+                        onClick={onClick_input}
                         value={textarea}
                         className={styles.input}
                         type="text"

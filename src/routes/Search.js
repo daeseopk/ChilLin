@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import NaviBar from "../components/NaviBar";
-import SearchBar from "../components/SearchBar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
@@ -48,7 +47,7 @@ function Search() {
                            ? "searchBarContainer"
                            : "searchBarContainerNoExist"
                      }>
-                     <SearchBar width="500px" value={key} />
+                     
                   </div>
                   {movies.length ? (
                      <GridTemplate movies={movies} />

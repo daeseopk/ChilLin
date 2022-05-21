@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { auth, firebaseInstance } from "../firebase";
 import firebase from "../firebase";
 
-export default function Modal({ isOpen, setIsOpen, width, height }) {
+export default function Modal({ isOpen, setIsOpen, width, height, email_ref }) {
    const [warnMsg, setWarnMsg] = useState([]);
    const [isChecked, setIsChecked] = useState(false);
    const [emailvalue, setEmailValue] = useState("");
@@ -55,7 +55,7 @@ export default function Modal({ isOpen, setIsOpen, width, height }) {
                   ).operationType) === "signIn"
                ) {
                   setWarnMsg("");
-                  firebase
+                  await firebase
                      .auth()
                      .setPersistence(firebase.auth.Auth.Persistence.SESSION);
                   window.sessionStorage.setItem("Login", true);
@@ -109,7 +109,7 @@ export default function Modal({ isOpen, setIsOpen, width, height }) {
                <div>
                   <h2 className={styles.signinText}>Sign In</h2>
                </div>
-               <form onSubmit={handleSubmit(onSubmit)}>
+               <form ref={email_ref} onSubmit={handleSubmit(onSubmit)}>
                   <input
                      {...register("email")}
                      onChange={onChange1}

@@ -8,9 +8,12 @@ export default function ShowLike({ index, comment_user, Showlike }) {
    useEffect(() => {
       setUser(comment_user);
    }, []);
-
+   const like_onMouseOut = (e) => {
+      Showlike.current[e.target.id].style = "opacity:0; z-index:-1;";
+   };
    return (
       <div
+         onMouseOut={like_onMouseOut}
          id={index}
          ref={(elem) => (Showlike.current[index] = elem)}
          className={styles.ShowLikeContainer}>
@@ -26,7 +29,9 @@ export default function ShowLike({ index, comment_user, Showlike }) {
                               src={
                                  user[user_keys]
                                     ? user[user_keys].photoURL
-                                    : require("../Images/defaultProfile.png")
+                                       ? user[user_keys].photoURL
+                                       : require("../Images/defaultProfile.png")
+                                    : null
                               }
                               alt="profile"
                            />

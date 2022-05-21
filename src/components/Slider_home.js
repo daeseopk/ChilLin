@@ -8,7 +8,7 @@ export default function Slider_home() {
    const [movie, setMovie] = useState();
    const [loading, setLoading] = useState(true);
    const [genre, setGenre] = useState();
-   const [isEvent, setIsEvent] = useState(true); // 커스텀 HOVER이벤트 조건
+   const [isEvent, setIsEvent] = useState(true); //HOVER이벤트 조건
    const [sequence, setSequence] = useState([0, 1, 2, 3, 4]);
    const [transform, setTranform] = useState([
       "-10%,30%",
@@ -112,7 +112,7 @@ export default function Slider_home() {
       for (let i = 0; i < sequence.length; i++) {
          if (sequence[i] === sequence[index])
             card.current[i].style =
-               "border-radius: 0px; box-shadow:none; transition:1.5s ease all;";
+               "border-radius: 0px;transition:1.5s ease all;";
          else {
             card.current[i].style = "opacity:0; transition:none;";
          }
@@ -260,5 +260,4 @@ const Card = styled.div`
    z-index: ${(prop) => prop.z_index};
    transition: 0.6s ease all;
    border-radius: 15px;
-   box-shadow: 2px 2px 2px 2px rgba(30, 30, 30, 0.7);
 `;

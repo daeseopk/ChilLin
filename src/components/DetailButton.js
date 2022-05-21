@@ -1,32 +1,32 @@
 import React from "react";
-import Styles from "../Styles/DetailButton.module.css";
+import "../Styles/DetailButton.css";
 
 export default function DetailButton({ Toggle, setToggle, moveTrigger }) {
    const onClick = (e) => {
-      console.log(e.target.value);
-      if (e.target.id === "DetailButton_Details__YO6eg") setToggle("DETAILS");
+      console.log(e.target.id);
+      if (e.target.id === "Details") setToggle("DETAILS");
       else setToggle("COMMENTS");
    };
    return (
       <div
          className={
-            moveTrigger ? Styles.ButtonContainerMoved : Styles.ButtonContainer
+            moveTrigger ? "ButtonContainerMoved" : "ButtonContainer"
          }>
-         <div className={Styles.ButtonWrapper}>
+         <div className="ButtonWrapper">
             <span
                onClick={onClick}
                className={
-                  Toggle === "DETAILS" ? Styles.ButtonActive : Styles.Button
+                  Toggle === "DETAILS" ? "ButtonActive" : "Button"
                }
-               id={Styles.Details}>
+               id="Details">
                DETAILS
             </span>
             <span
                onClick={onClick}
                className={
-                  Toggle === "COMMENTS" ? Styles.ButtonActive : Styles.Button
+                  Toggle === "COMMENTS" ? "ButtonActive" : "Button"
                }
-               id={Styles.Comments}>
+               id="Comments">
                COMMENTS
             </span>
          </div>

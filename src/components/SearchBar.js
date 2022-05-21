@@ -2,14 +2,18 @@ import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { useForm, Controller } from "react-hook-form";
+import { useState, useRef } from "react";
 
 function SearchBar({ width, value }) {
+   const CssTextField_=useRef();
+   
    const CssTextField = styled(TextField)({
       "& .MuiInput-underline:after": {
-         borderBottomColor: "White",
+         borderBottomColor: "white",
       },
       "& .MuiInput-underline:before": {
-         borderBottomColor: "White",
+         borderBottomColor: "white",
+         opacity:"0" 
       },
       "& label.Mui-focused": {
          color: "white",
@@ -17,17 +21,33 @@ function SearchBar({ width, value }) {
       "& .MuiInput-root": {
          color: "white",
       },
+      "& .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root":{
+         opacity:"0"
+      }
    });
    const { handleSubmit, control } = useForm();
    function onSubmit(d) {
-      window.location.href = `/Search/word=${d.input}`;
+      d.input?
+      (
+         window.location.href = `/Search/word=${d.input}`
+      ):
+      (
+         CssTextField_.current.children[0].focus()
+      )
+      
+   }
+   const onKeyPress_ =(e)=>{
+      console.log(e.key);
    }
    return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+         {/* TODO : enter 입력 시 handleSubmit(onSubmit) */}
          <Controller
             render={({ field }) => (
                <CssTextField
                   {...field}
+                  onKeyPress={onKeyPress_}
+                  ref={CssTextField_}
                   id="standard-basic"
                   label={value ? `Current Search : ${value}` : "Search"}
                   variant="standard"
@@ -39,6 +59,7 @@ function SearchBar({ width, value }) {
             name="input"
          />
          <button
+         onClick={handleSubmit(onSubmit)}
             style={{
                backgroundColor: "inherit",
                cursor: "pointer",
@@ -57,7 +78,7 @@ function SearchBar({ width, value }) {
                }}
             />
          </button>
-      </form>
+      </div>
    );
 }
 

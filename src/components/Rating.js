@@ -42,7 +42,6 @@ export default function BasicRating({
             onChange={(event, newValue) => {
                setValue(newValue);
                setRating(newValue);
-               console.log(newValue);
             }}
             precision={0.5}
             readOnly={readOnly}
