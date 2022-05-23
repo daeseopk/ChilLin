@@ -26,7 +26,28 @@
    display: flex;
    width: 100%;
    height: 100%;
-   border: 2px red solid;
+}
+.RightTop {
+   width: 100%;
+   height: fit-content;
+   margin: 0;
+   padding: 5px;
+}
+.ItemWrapper {
+   margin-bottom: 30px;
+}
+.Title {
+   margin: 0;
+   margin-bottom: 5px;
+   font-size: 20px;
+   font-weight: 900;
+}
+.body {
+   margin: 0;
+   font-size: 15px;
+}
+.language {
+   margin-right: 20px;
 }
 .ScrollerContainer {
    display: inline-flex;
@@ -71,6 +92,8 @@
    display: block;
    width: inherit;
    height: 250px;
+   overflow-y: scroll;
+   overflow-x: hidden;
 }
 .profile {
    border-radius: 6px 6px 0px 0px;
@@ -90,7 +113,7 @@
 }
 #character {
    font-size: 12px;
-   white-space: pre-wrap;
+   white-space: pre-line;
 }
 
 .TrailerContainer {

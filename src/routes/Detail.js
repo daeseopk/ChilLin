@@ -110,6 +110,7 @@ function Detail() {
                />
                <div className={styles.Bottom}>
                   <Details
+                     movie={movie}
                      id={movie.id}
                      Toggle={Toggle}
                      visibility={opacity_details}

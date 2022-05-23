@@ -4,8 +4,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Scroller from "../components/Scroller";
 import Trailer from "../components/Trailer";
+import RightTop from "../components/Right_Top";
 
-export default function Details({ Toggle, id, visibility, setVisibility }) {
+export default function Details({
+   Toggle,
+   id,
+   visibility,
+   setVisibility,
+   movie,
+}) {
    const [people, setPeople] = useState();
    const [loading, setLoading] = useState(true);
    const [ScrollerXOffset, setScrollerXOffset] = useState(0);
@@ -30,6 +37,7 @@ export default function Details({ Toggle, id, visibility, setVisibility }) {
       };
       getPeople();
    }, []);
+   console.log(movie);
    return (
       <div
          style={{ opacity: visibility, zIndex: visibility }}
@@ -44,7 +52,15 @@ export default function Details({ Toggle, id, visibility, setVisibility }) {
                   />
                   <Trailer id={id} play_trigger={visibility} />
                </div>
-               <div className={styles.DetailRight}>right</div>
+               <div className={styles.DetailRight}>
+                  <RightTop
+                     Title={movie.original_title}
+                     status={movie.status}
+                     language={movie.spoken_languages}
+                     budget={movie.budget}
+                     revenue={movie.revenue}
+                  />
+               </div>
             </div>
          )}
       </div>

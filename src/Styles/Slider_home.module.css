@@ -1,6 +1,6 @@
 .Slider_Container {
-   width: 1200px;
-   height: 50%;
+   width: 1080px;
+   height: 48%;
    margin: 0 auto;
    margin-top: 100px;
    transition: 0.5s all ease;
@@ -62,10 +62,15 @@
    overflow-y: scroll;
 }
 .Summary_viewmore {
+   opacity: 0.5;
    position: absolute;
    right: 5%;
    bottom: 10%;
    color: white;
+   transition: 0.2s ease all;
+}
+.Summary_viewmore:hover {
+   opacity: 1;
 }
 .leftArrow,
 .rightArrow {
@@ -103,18 +108,19 @@
       width: 60px;
       height: 60px;
    }
-   .Summary_Title{
+   .Summary_Title {
       font-size: 20px;
       margin-bottom: 15px;
    }
-   .Summary_genre,.Summary_overview{
+   .Summary_genre,
+   .Summary_overview {
       font-size: 10px;
       margin-bottom: 15px;
    }
-   .Summary_overview{
+   .Summary_overview {
       height: 35%;
    }
-   .Summary_viewmore{
+   .Summary_viewmore {
       font-size: 10px;
    }
 }
@@ -129,18 +135,19 @@
    .rightArrow {
       right: -40px;
    }
-   .Summary_Title{
+   .Summary_Title {
       font-size: 15px;
       margin-bottom: 5px;
    }
-   .Summary_genre,.Summary_overview{
+   .Summary_genre,
+   .Summary_overview {
       font-size: 7px;
       margin-bottom: 2px;
    }
-   .Summary_overview{
+   .Summary_overview {
       height: 30%;
    }
-   .Summary_viewmore{
+   .Summary_viewmore {
       font-size: 7px;
    }
 }

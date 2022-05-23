@@ -80,7 +80,7 @@ export default function InputComment({
                            ? currentUser.photoURL
                               ? currentUser.photoURL
                               : require("../Images/defaultProfile.png")
-                           : null
+                           : require("../Images/defaultProfile.png")
                      }
                      alt="profile"
                   />

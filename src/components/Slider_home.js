@@ -80,27 +80,47 @@ export default function Slider_home() {
       if (sequence[e.target.id] === 2) {
          summary.current[e.target.id].style =
             "opacity:1; background-color:rgba(0,0,0,0.5);";
+      } else {
+         card.current[e.target.id].style =
+            "filter: blur(8px); -webkit-filter: blur(2px); cursor:pointer;";
       }
    };
    const onMouseOut = (e) => {
       if (sequence[e.target.id] === 2) {
          summary.current[e.target.id].style = "opacity:0;";
+      } else {
+         card.current[e.target.id].style =
+            "filter: blur(8px); -webkit-filter: blur(5px);";
       }
    };
    const onClick_Card = (seq, e) => {
+      // 지나간 카드 blur 처리, 가운데 카드 blur 없애기
+      for (let i = 0; i < movie.length; i++) {
+         card.current[i] === card.current[e.target.id]
+            ? (card.current[i].style = "filter: none; -webkit-filter: none;")
+            : (card.current[i].style =
+                 "filter: blur(8px); -webkit-filter: blur(5px);");
+      }
+      // 방향 전환(좌)
       var sequence_ = Array.from(sequence);
       if (seq < 2) {
          for (let j = 0; j < 2 - seq; j++) {
             for (let i = 0; i < sequence_.length; i++) {
-               if (sequence_[i] === 4) sequence_[i] = -1;
+               if (sequence_[i] === 4) {
+                  sequence_[i] = -1;
+               }
                sequence_[i] = sequence_[i] + 1;
             }
             setSequence(sequence_);
          }
-      } else {
+      }
+      // 방향 전환(우)
+      else {
          for (let j = 0; j < seq - 2; j++) {
             for (let i = 0; i < sequence_.length; i++) {
-               if (sequence_[i] === 0) sequence_[i] = sequence_.length;
+               if (sequence_[i] === 0) {
+                  sequence_[i] = sequence_.length;
+               }
                sequence_[i] = sequence_[i] - 1;
             }
             setSequence(sequence_);
@@ -130,6 +150,14 @@ export default function Slider_home() {
          window.location.href = `/Detail/id=${movie.id}`;
       }, 1500);
    };
+   // 부모 element의 이벤트를 무시하고, 본인 이벤트만 수행되게 해주는 함수
+   function prevent(fn, defaultOnly) {
+      return (e, ...params) => {
+         e && e.preventDefault();
+         !defaultOnly && e && e.stopPropagation();
+         fn(e, ...params);
+      };
+   }
    return (
       <>
          {!loading ? (
@@ -191,6 +219,7 @@ export default function Slider_home() {
                                          {movie.title}
                                       </p>
                                       <div
+                                         id={index}
                                          className={
                                             styles.Summary_genre_Wrapper
                                          }>
@@ -210,17 +239,19 @@ export default function Slider_home() {
                                             })
                                          )}
                                       </div>
-                                      <p className={styles.Summary_overview}>
+                                      <p
+                                         id={index}
+                                         className={styles.Summary_overview}>
                                          {movie.overview}
                                       </p>
                                       {/* view more 기능만 구현하였음 */}
                                       <span
-                                         onClick={(e) => {
-                                            onClick_viewmore(index, movie, e);
-                                         }}
+                                         onClick={prevent((e) =>
+                                            onClick_viewmore(index, movie, e)
+                                         )}
                                          style={{ cursor: "pointer" }}
                                          className={styles.Summary_viewmore}>
-                                         view more
+                                         View More
                                       </span>
                                    </div>
                                 </div>
