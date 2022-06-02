@@ -11,11 +11,11 @@ export default function Slider_home() {
    const [isEvent, setIsEvent] = useState(true); //HOVER이벤트 조건
    const [sequence, setSequence] = useState([0, 1, 2, 3, 4]);
    const [transform, setTranform] = useState([
-      "-10%,30%",
-      "5%,10%",
-      "20%,0",
-      "35%,10%",
-      "50%,30%",
+      "10%,30%",
+      "25%,10%",
+      "40%,0",
+      "55%,10%",
+      "70%,30%",
    ]);
    const summary = useRef([]);
    const card = useRef([]);
@@ -53,11 +53,11 @@ export default function Slider_home() {
    }, []);
    const handleResize = () => {
       if (window.innerWidth > 1400) {
-         setTranform(["-10%,30%", "5%,10%", "20%,0", "35%,10%", "50%,30%"]);
+         setTranform(["10%,30%", "25%,10%", "40%,0", "55%,10%", "70%,30%"]);
       } else if (window.innerWidth <= 1400 && window.innerWidth > 1000) {
-         setTranform(["0%,30%", "10%,10%", "20%,0", "30%,10%", "40%,30%"]);
+         setTranform(["20%,30%", "30%,10%", "40%,0", "50%,10%", "60%,30%"]);
       } else if (window.innerWidth <= 1000) {
-         setTranform(["10%,30%", "15%,10%", "20%,0", "25%,10%", "30%,30%"]);
+         setTranform(["30%,30%", "35%,10%", "40%,0", "45%,10%", "50%,30%"]);
       }
    };
 
@@ -74,6 +74,16 @@ export default function Slider_home() {
             sequence_[i] = sequence_[i] - 1;
          }
       }
+
+      for (let i = 0; i < movie.length; i++) {
+         i === 2
+            ? (card.current[sequence[i]].style =
+                 "filter: none; -webkit-filter: none;")
+            : (card.current[sequence[i]].style =
+                 "filter: blur(8px); -webkit-filter: blur(5px);");
+      }
+      console.log(sequence_);
+      console.log(card.current[sequence_[2]]);
       setSequence(sequence_);
    };
    const onMouseEnter = (e) => {
@@ -280,7 +290,7 @@ export default function Slider_home() {
 const Card = styled.div`
    position: absolute;
    margin: 0 auto;
-   width: 70%;
+   width: 55%;
    height: ${(prop) => prop.height};
    transform: translate(${(prop) => prop.transform});
    background-image: url("https://image.tmdb.org/t/p/original${(prop) =>

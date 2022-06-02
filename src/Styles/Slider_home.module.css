@@ -1,5 +1,5 @@
 .Slider_Container {
-   width: 1080px;
+   width: 1420px;
    height: 48%;
    margin: 0 auto;
    margin-top: 100px;
@@ -87,24 +87,24 @@
    opacity: 1;
 }
 .leftArrow {
-   left: -200px;
+   /* left: -200px; */
    transform: scaleX(-1);
 }
 .rightArrow {
-   right: -200px;
+   right: 0px;
 }
 @media screen and (max-width: 1200px) {
    .Slider_Container {
-      width: 800px;
-      height: 32%;
+      width: 1020px;
+      height: 36%;
    }
    .leftArrow {
-      left: -90px;
+      left: 40px;
       width: 60px;
       height: 60px;
    }
    .rightArrow {
-      right: -90px;
+      right: 40px;
       width: 60px;
       height: 60px;
    }
@@ -130,10 +130,14 @@
       height: 25%;
    }
    .leftArrow {
-      left: -40px;
+      left: 50px;
+      width: 50px;
+      height: 50px;
    }
    .rightArrow {
-      right: -40px;
+      right: 50px;
+      width: 50px;
+      height: 50px;
    }
    .Summary_Title {
       font-size: 15px;
