@@ -74,7 +74,7 @@ export default function Slider_home() {
             sequence_[i] = sequence_[i] - 1;
          }
       }
-
+      // TODO
       for (let i = 0; i < movie.length; i++) {
          i === 2
             ? (card.current[sequence[i]].style =
