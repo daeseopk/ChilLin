@@ -7,14 +7,8 @@ import Slider_home from "../components/Slider_home";
 
 function Home() {
    const [loading, setLoading] = useState(true);
-   const getMoives = async () => {
-      const response = await axios.get(
-         "https://api.themoviedb.org/3/trending/movie/week?api_key=83f61a3baf6174f8aeb8a593cc236386&/movie/508&page=1"
-      );
-      setLoading(true);
-   };
    useEffect(() => {
-      getMoives();
+      setLoading(true);
    }, []);
    return (
       <div className={styles.container}>
