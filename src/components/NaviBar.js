@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as FaIcons from "react-icons/fa";
 import Button from "@mui/material/Button";
 import { auth } from "../firebase";
 import "../Styles/NaviBar.css";
-import SideMenu from "./SideMenu.js";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import firebase from "../firebase";
@@ -21,7 +19,6 @@ const Profile = styled.img`
 `;
 function NaviBar() {
    const [ScrollY, setScrollY] = useState();
-   const [menuVisible, setMenuVisible] = useState(false);
    const [currentUser, setCurrentUser] = useState();
    const [loading, setLoading] = useState(true);
 
@@ -57,9 +54,6 @@ function NaviBar() {
       window.location.replace("/Home");
       logout();
    };
-   const onMenuClick = () => {
-      setMenuVisible(!menuVisible);
-   };
 
    const loginStatus = window.sessionStorage.getItem("Login");
 
@@ -72,13 +66,6 @@ function NaviBar() {
          className="NavBarContainer">
          {!loading ? (
             <div className="navbar">
-               <SideMenu
-                  menuVisible={menuVisible}
-                  setMenuVisible={setMenuVisible}
-               />
-               <div onClick={onMenuClick}>
-                  <FaIcons.FaBars className="menuicon" />
-               </div>
                <div
                   style={{
                      marginLeft: "30px",
